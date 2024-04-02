@@ -1,5 +1,4 @@
 import {
-    CacheTypeReducer,
     ChatInputCommandInteraction,
     Collection,
     EmbedBuilder,
@@ -8,7 +7,6 @@ import {
 import Event from '../../classes/Event';
 import CustomClient from '../../classes/CustomClient';
 import Command from '../../classes/Command';
-import ContextMenu from '../../classes/ContextMenu';
 
 export default class CommandHandler extends Event {
     constructor(client: CustomClient) {
