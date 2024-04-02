@@ -1,7 +1,8 @@
 import {
-    ContextMenuCommandInteraction,
     EmbedBuilder,
     Events,
+    MessageContextMenuCommandInteraction,
+    UserContextMenuCommandInteraction,
 } from 'discord.js';
 import Event from '../../classes/Event';
 import CustomClient from '../../classes/CustomClient';
@@ -16,7 +17,11 @@ export default class ContextHandler extends Event {
         });
     }
 
-    async Execute(int: ContextMenuCommandInteraction) {
+    async Execute(
+        int:
+            | UserContextMenuCommandInteraction
+            | MessageContextMenuCommandInteraction
+    ) {
         if (!int.isContextMenuCommand()) return;
         const command: ContextMenu = this.client.commands.get(int.commandName)!;
 

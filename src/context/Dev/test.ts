@@ -2,6 +2,7 @@ import {
     ApplicationCommandType,
     ContextMenuCommandInteraction,
     PermissionsBitField,
+    UserContextMenuCommandInteraction,
 } from 'discord.js';
 import CustomClient from '../../classes/CustomClient';
 import Category from '../../enums/Category';
@@ -18,7 +19,7 @@ export default class TestContext extends ContextMenu {
         });
     }
 
-    async Execute(int: ContextMenuCommandInteraction) {
+    async Execute(int: UserContextMenuCommandInteraction) {
         int.reply({
             content: 'Test Context',
             ephemeral: true,

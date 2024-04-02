@@ -1,9 +1,7 @@
 import { Collection, Events, REST, Routes, version } from 'discord.js';
 import CustomClient from '../../classes/CustomClient';
 import Event from '../../classes/Event';
-import Command from '../../classes/Command';
 import mongoose from 'mongoose';
-import ContextMenu from '../../classes/ContextMenu';
 
 export default class Ready extends Event {
     constructor(client: CustomClient) {
@@ -17,9 +15,9 @@ export default class Ready extends Event {
     async Execute() {
         this.client.logger.info(`Bot ${this.client.user?.tag} online`);
         this.client.logger.info(`Bot ID: ${this.client.user?.id}`);
-        this.client.logger.info(`DJS Version: ${version}`);
+        this.client.logger.info(`DJS Version: v${version}`);
         this.client.logger.info(`Node Version: ${process.version}`);
-        this.client.logger.info(`Mongo Version: ${mongoose.version}`);
+        this.client.logger.info(`Mongo Version: v${mongoose.version}`);
 
         const clientId = this.client.developmentMode
             ? this.client.config.devClientId

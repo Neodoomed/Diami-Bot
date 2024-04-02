@@ -20,6 +20,10 @@ export default model<IGuildConfig>(
                     enabled: Boolean,
                     channelId: String,
                 },
+                develop: {
+                    enabled: Boolean,
+                    channelId: String,
+                },
             },
         },
         {

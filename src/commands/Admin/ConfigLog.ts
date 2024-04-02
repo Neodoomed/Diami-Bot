@@ -37,6 +37,10 @@ export default class ConfigLogs extends Command {
                                     name: 'Log de Moderación',
                                     value: 'moderation',
                                 },
+                                {
+                                    name: 'Log Dev',
+                                    value: 'develop',
+                                },
                             ],
                         },
                         {

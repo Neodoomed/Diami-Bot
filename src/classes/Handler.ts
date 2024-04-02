@@ -6,6 +6,9 @@ import Event from './Event';
 import Command from './Command';
 import SubCommand from './SubCommand';
 import ContextMenu from './ContextMenu';
+import { promises } from 'dns';
+import { EmbedBuilder, TextChannel } from 'discord.js';
+import GuildConfig from '../schemas/GuildConfig';
 
 export default class Handler implements IHandler {
     client: CustomClient;
@@ -92,5 +95,30 @@ export default class Handler implements IHandler {
 
             return delete require.cache[require.resolve(file)];
         });
+    }
+
+    async NonCrash() {
+        process.removeAllListeners();
+        process.on(
+            'unhandledRejection',
+            async (reason: string, promise: Promise<any>) => {
+                this.client.logger.warning(`Crash: Promesa rechaza:.`);
+                this.client.logger.warning(`${reason}.`);
+            }
+        );
+        process.on(
+            'uncaughtException',
+            async (reason: string, promise: Promise<any>) => {
+                this.client.logger.warning(`Crash: Error de Exception.`);
+                this.client.logger.warning(`${reason}.`);
+            }
+        );
+        process.on(
+            'uncaughtExceptionMonitor',
+            async (reason: string, promise: Promise<any>) => {
+                this.client.logger.warning(`Crash: Error de Exception.`);
+                this.client.logger.warning(`${reason}.`);
+            }
+        );
     }
 }

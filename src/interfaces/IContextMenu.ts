@@ -1,6 +1,8 @@
 import {
-    ContextMenuCommandInteraction,
+    CacheType,
     ContextMenuCommandType,
+    MessageContextMenuCommandInteraction,
+    UserContextMenuCommandInteraction,
 } from 'discord.js';
 import CustomClient from '../classes/CustomClient';
 import Category from '../enums/Category';
@@ -13,5 +15,9 @@ export default interface IContextMenu {
     default_member_permissions: bigint;
     dev: boolean;
 
-    Execute(int: ContextMenuCommandInteraction): void;
+    Execute(
+        int:
+            | UserContextMenuCommandInteraction<CacheType>
+            | MessageContextMenuCommandInteraction<CacheType>
+    ): void;
 }

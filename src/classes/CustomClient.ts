@@ -78,6 +78,7 @@ export default class CustomClient extends Client implements ICustomClient {
         this.handler.LoadEvents();
         this.handler.LoadCommands();
         this.handler.LoadContextMenus();
+        this.handler.NonCrash();
     }
 
     MongoConnect(): void {
