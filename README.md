@@ -34,15 +34,15 @@ programando y mejorando las funciones de este Bot para Discord.
 
 ## TODO:
 
-- [_] Music
-- [_] Sistema de Level
-- [_] Sistema de Economía
-- [_] Juegos
-    - [_] Gachapon
-    - [_] Auto Hero Combat
-    - [_] Tower Defense ?
-- [] Tarot (La implementación sera porteada del viejo bot)
-- [] Mascota Virtual
+- [ ] Music
+- [ ] Sistema de Level
+- [ ] Sistema de Economía
+- [ ] Juegos
+    - [ ] Gachapon
+    - [ ] Auto Hero Combat
+    - [ ] Tower Defense ?
+- [ ] Tarot (La implementación sera porteada del viejo bot)
+- [ ] Mascota Virtual
 
 <br/>
 
