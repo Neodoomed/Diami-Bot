@@ -1,8 +1,9 @@
 [![Version](https://img.shields.io/badge/Curren_version-5.2.2-blue)](https://github.com/Neodoomed/AdonalsiumV14.2)
 [![License](https://img.shields.io/badge/licence-GNU-green)](https://github.com/Neodoomed/AdonalsiumV14.2/blob/master/LICENSE)
 [![Last Commit](https://img.shields.io/github/last-commit/Neodoomed/AdonalsiumV14.2.svg)](https://github.com/Neodoomed/AdonalsiumV14.2/commits)
+[![Discord Server](https://discordapp.com/api/guilds/774727090188320808/embed.png)](https://discord.com/invite/3x8uMdpeHR)
 
-# Adonalsium bot [![Discord](https://img.shields.io/badge/Discor-El%20Diagrama-blue?style=flat&logo=discord&link=https://discord.com/invite/3x8uMdpeHR)](https://discord.com/invite/3x8uMdpeHR)
+# Adonalsium bot [![Discord](https://img.shields.io/badge/El%20Diagrama-blue?style=flat&link=https://discord.com/invite/3x8uMdpeHR)](https://discord.com/invite/3x8uMdpeHR)
 
 <p align="center">
     
