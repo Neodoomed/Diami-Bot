@@ -25,24 +25,24 @@ programando y mejorando las funciones de este Bot para Discord.
 
 ## ✨ Features
 
-- Comandos Slash
-- Menu Contextual
-- Logger
-- Animated Avatar
+[x] Comandos Slash
+[x] Menu Contextual
+[x] Logger
+[x] Animated Avatar
 
 <br/>
 
 - ## TODO:
 
-- Music
-- Sistema de Level
-- Sistema de Economía
-- Juegos
-    - Gachapon
-    - Auto Hero Combat
-    - Tower Defense ?
-- Tarot (La implementación sera porteada del viejo bot)
-- Mascota Virtual
+[] Music
+[] Sistema de Level
+[] Sistema de Economía
+[] Juegos
+    [] Gachapon
+    [] Auto Hero Combat
+    [] Tower Defense ?
+[] Tarot (La implementación sera porteada del viejo bot)
+[] Mascota Virtual
 
 <br/>
 

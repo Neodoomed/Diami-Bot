@@ -1,28 +1,25 @@
-import {
-    EmbedBuilder,
-    Events,
-    MessageContextMenuCommandInteraction,
-    UserContextMenuCommandInteraction,
-} from 'discord.js';
+import { EmbedBuilder, Events, ModalSubmitInteraction } from 'discord.js';
 import Event from '../../classes/Event';
 import CustomClient from '../../classes/CustomClient';
-import ContextMenu from '../../classes/ContextMenu';
 
-export default class ContextHandler extends Event {
+export default class ModalHandler extends Event {
     constructor(client: CustomClient) {
         super(client, {
             name: Events.InteractionCreate,
-            description: 'Context Menu handler event.',
+            description: 'Modal handler event.',
             once: false,
         });
     }
 
-    async Execute(
-        int:
-            | UserContextMenuCommandInteraction
-            | MessageContextMenuCommandInteraction
-    ) {
+    async Execute(int: ModalSubmitInteraction) {
         if (!int.isModalSubmit) return;
-        const command: ContextMenu = this.client.commands.get(int.commandName)!;
+        const modal = this.client.modals.get(int.customId);
+        if (!modal) return;
+
+        try {
+            await modal.Execute(this.client, int);
+        } catch (e) {
+            this.client.logger.error(`${e}`);
+        }
     }
 }
