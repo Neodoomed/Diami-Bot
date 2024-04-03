@@ -1,4 +1,4 @@
-[![Version](https://img.shields.io/badge/Curren_version-5.2.2-blue)] 
+[![Version](https://img.shields.io/badge/Curren_version-5.2.2-blue)](https://github.com/Neodoomed/AdonalsiumV14.2)
 [![License](https://img.shields.io/badge/licence-GNU-green)](https://github.com/Neodoomed/AdonalsiumV14.2/blob/master/LICENSE)
 [![Last Commit](https://img.shields.io/github/last-commit/Neodoomed/AdonalsiumV14.2.svg)](https://github.com/Neodoomed/AdonalsiumV14.2/commits)
 
