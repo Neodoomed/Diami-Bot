@@ -1,7 +1,12 @@
-<p align="center"># Adonalsium bot v5.2.2</p>
-
-[![Discor](https://img.shields.io/badge/Discor-El%20Diagrama-blue?style=flat&logo=discord&link=https://discord.com/invite/3x8uMdpeHR)](https://discord.com/invite/3x8uMdpeHR)
 <p align="center">
+
+# Adonalsium bot v5.2.2
+
+</p>
+
+[![Discord](https://img.shields.io/badge/Discor-El%20Diagrama-blue?style=flat&logo=discord&link=https://discord.com/invite/3x8uMdpeHR)](https://discord.com/invite/3x8uMdpeHR)
+<p align="center">
+
 Bot para Discord de Seguidores del Diagrama, escrito en [discord.js](https://discord.js.org), [TypeScript](https://www.typescriptlang.org/) y [Mongo](https://www.mongodb.com).
 
 ## </p>
