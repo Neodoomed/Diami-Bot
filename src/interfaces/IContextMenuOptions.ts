@@ -1,5 +1,4 @@
 import { ContextMenuCommandType } from 'discord.js';
-import CustomClient from '../classes/CustomClient';
 import Category from '../enums/Category';
 
 export default interface IContextMenuOptions {

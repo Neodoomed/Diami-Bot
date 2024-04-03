@@ -6,9 +6,10 @@ import Event from './Event';
 import Command from './Command';
 import SubCommand from './SubCommand';
 import ContextMenu from './ContextMenu';
-import { promises } from 'dns';
 import { EmbedBuilder, TextChannel } from 'discord.js';
 import GuildConfig from '../schemas/GuildConfig';
+import Modal from './Modal';
+import Button from './Button';
 
 export default class Handler implements IHandler {
     client: CustomClient;
@@ -92,6 +93,32 @@ export default class Handler implements IHandler {
                 contextMenu.name,
                 contextMenu as ContextMenu
             );
+
+            return delete require.cache[require.resolve(file)];
+        });
+    }
+
+    async LoadComponents() {
+        const file = (await glob(`dist/components/**/*.js`)).map((filePath) =>
+            path.resolve(filePath)
+        );
+
+        file.map(async (file: string) => {
+            const component: Modal | Button = new (await import(file)).default(
+                this.client
+            );
+
+            if (!component.name) {
+                this.client.logger.error(
+                    '${file.split("/").pop()} no tiene nombre'
+                );
+                return delete require.cache[require.resolve(file)];
+            }
+
+            if (file.split('\\')[-1].toLowerCase() == 'modals')
+                this.client.modals.set(component.name, component as Modal);
+            if (file.split('\\')[-1].toLowerCase() == 'buttons')
+                this.client.buttons.set(component.name, component as Button);
 
             return delete require.cache[require.resolve(file)];
         });
