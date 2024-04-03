@@ -1,4 +1,6 @@
+[![discord.js](https://img.shields.io/github/package-json/dependency-version/KevinNovak/Discord-Bot-TypeScript-Template/discord.js)](https://discord.js.org/)
 [![Version](https://img.shields.io/badge/Curren_version-5.2.2-blue)](https://github.com/Neodoomed/AdonalsiumV14.2)
+[![Release](https://img.shields.io/github/release/Neodoomed/AdonalsiumV14.2)](https://github.com/Neodoomed/AdonalsiumV14.2/releases/latest)
 [![License](https://img.shields.io/badge/licence-GNU-green)](https://github.com/Neodoomed/AdonalsiumV14.2/blob/master/LICENSE)
 [![Last Commit](https://img.shields.io/github/last-commit/Neodoomed/AdonalsiumV14.2.svg)](https://github.com/Neodoomed/AdonalsiumV14.2/commits)
 [![Discord Server](https://discordapp.com/api/guilds/774727090188320808/embed.png)](https://discord.com/invite/3x8uMdpeHR)
