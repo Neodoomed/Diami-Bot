@@ -1,4 +1,8 @@
-# Adonalsium bot v5.2.2 [![Discord](https://img.shields.io/badge/Discor-El%20Diagrama-blue?style=flat&logo=discord&link=https://discord.com/invite/3x8uMdpeHR)](https://discord.com/invite/3x8uMdpeHR)
+[![Version](https://img.shields.io/badge/Curren_version-5.2.2-blue)] 
+[![License](https://img.shields.io/badge/licence-GNU-green)](https://github.com/Neodoomed/AdonalsiumV14.2/blob/master/LICENSE)
+[![Last Commit](https://img.shields.io/github/last-commit/Neodoomed/AdonalsiumV14.2.svg)](https://github.com/Neodoomed/AdonalsiumV14.2/commits)
+
+# Adonalsium bot [![Discord](https://img.shields.io/badge/Discor-El%20Diagrama-blue?style=flat&logo=discord&link=https://discord.com/invite/3x8uMdpeHR)](https://discord.com/invite/3x8uMdpeHR)
 
 <p align="center">
     
