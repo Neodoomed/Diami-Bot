@@ -27,9 +27,15 @@ programando y mejorando las funciones de este Bot para Discord.
 
 ---
 
+## 📦 Requisitos
+
+- Node.js v20 or higher
+- Git
+- MongoDB
+
 <br/>
 
-## ✨ Features
+## ✨ TODO
 
 - [x] Comandos Slash
 - [x] Menu Contextual
