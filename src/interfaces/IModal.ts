@@ -4,6 +4,7 @@ import CustomClient from '../classes/CustomClient';
 export default interface IModal {
     client: CustomClient;
     name: string;
+    description: string;
 
     Execute(client: CustomClient, int: ModalSubmitInteraction): void;
 }

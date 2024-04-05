@@ -6,7 +6,7 @@ import * as dotenv from 'dotenv';
 import Handler from './Handler';
 import Command from './Command';
 import SubCommand from './SubCommand';
-import mongoose from 'mongoose';
+import mongoose, { connection } from 'mongoose';
 import Modal from './Modal';
 import Button from './Button';
 
@@ -83,15 +83,42 @@ export default class CustomClient extends Client implements ICustomClient {
         this.handler.LoadEvents();
         this.handler.LoadCommands();
         this.handler.LoadContextMenus();
+        this.handler.LoadComponents();
         this.handler.NonCrash();
     }
 
-    MongoConnect(): void {
+    async MongoConnect(): Promise<void> {
         const url: string = `mongodb+srv://${this.config.mongoUser}:${this.config.mongoPassword}@${this.config.mongoUrl}${this.developmentMode ? this.config.devMongoDb : this.config.mongoDb}?retryWrites=true&w=majority`;
-        mongoose
-            .connect(url)
-            .then(() => this.logger.mongo(`Conectado a MongoDB`))
-            .catch((e) => this.logger.mongo(e));
+        mongoose.connect(url);
+        //.then(() => this.logger.mongo(`Conectado a MongoDB`))
+        //.catch((e) => this.logger.mongo(e));
         mongoose.Promise = global.Promise;
+        connection.on('connected', () => {
+            this.logger.mongo(
+                `Conectado a ${this.developmentMode ? this.config.devMongoDb : this.config.mongoDb}.`
+            );
+        });
+        connection
+            .on('connecting', () => {
+                this.logger.mongo(`Conectando...`);
+            })
+            .on('disconnected', () => {
+                this.logger.mongo(`Conexión perdida.`);
+            })
+            .on('open', () => {
+                this.logger.mongo(`Base de datos abierta.`);
+            })
+            .on('close', () => {
+                this.logger.mongo(`Base de datos cerrada.`);
+            })
+            .on('fullsetup', () => {
+                this.logger.mongo(`Carga completa.`);
+            })
+            .on('error', (e) => {
+                this.logger.mongo(`[ERROR] e`);
+            })
+            .on('SIGINT', () => {
+                mongoose.connection.close();
+            });
     }
 }

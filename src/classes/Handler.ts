@@ -6,10 +6,9 @@ import Event from './Event';
 import Command from './Command';
 import SubCommand from './SubCommand';
 import ContextMenu from './ContextMenu';
-import { EmbedBuilder, TextChannel } from 'discord.js';
-import GuildConfig from '../schemas/GuildConfig';
 import Modal from './Modal';
 import Button from './Button';
+import { connection } from 'mongoose';
 
 export default class Handler implements IHandler {
     client: CustomClient;
@@ -43,7 +42,7 @@ export default class Handler implements IHandler {
 
     async LoadCommands() {
         const file = (await glob(`dist/commands/**/*.js`)).map((filePath) =>
-            path.resolve(filePath)
+            path.resolve(filePath).replace(/\\/g, '/')
         );
 
         file.map(async (file: string) => {
@@ -57,7 +56,7 @@ export default class Handler implements IHandler {
                 );
                 return delete require.cache[require.resolve(file)];
             }
-            if (file.split('\\').pop()?.split('.')[2]) {
+            if (file.split('/').pop()?.split('.')[2]) {
                 this.client.subCommands.set(
                     command.name,
                     command as SubCommand
@@ -73,7 +72,7 @@ export default class Handler implements IHandler {
 
     async LoadContextMenus() {
         const file = (await glob(`dist/context/**/*.js`)).map((filePath) =>
-            path.resolve(filePath)
+            path.resolve(filePath).replace(/\\/g, '/')
         );
 
         file.map(async (file: string) => {
@@ -100,7 +99,7 @@ export default class Handler implements IHandler {
 
     async LoadComponents() {
         const file = (await glob(`dist/components/**/*.js`)).map((filePath) =>
-            path.resolve(filePath)
+            path.resolve(filePath).replace(/\\/g, '/')
         );
 
         file.map(async (file: string) => {
@@ -115,9 +114,10 @@ export default class Handler implements IHandler {
                 return delete require.cache[require.resolve(file)];
             }
 
-            if (file.split('\\')[-1].toLowerCase() == 'modals')
+            if (file.split('/').filter(Boolean).slice(-2, -1)[0] == 'modals')
                 this.client.modals.set(component.name, component as Modal);
-            if (file.split('\\')[-1].toLowerCase() == 'buttons')
+
+            if (file.split('/').filter(Boolean).slice(-2, -1)[0] == 'buttons')
                 this.client.buttons.set(component.name, component as Button);
 
             return delete require.cache[require.resolve(file)];
@@ -147,5 +147,20 @@ export default class Handler implements IHandler {
                 this.client.logger.warning(`${reason}.`);
             }
         );
+    }
+
+    async mongoEvents() {
+        connection.on('connected', () => {
+            this.client.logger.mongo(`Conectado.`);
+        });
+        connection.on('connecting', () => {
+            this.client.logger.mongo(`Conectando...`);
+        });
+        connection.on('disconnected', () => {
+            this.client.logger.mongo(`Conexión perdida.`);
+        });
+        connection.on('error', (e) => {
+            this.client.logger.mongo(`[ERROR] e`);
+        });
     }
 }
