@@ -6,8 +6,7 @@ import Event from './Event';
 import Command from './Command';
 import SubCommand from './SubCommand';
 import ContextMenu from './ContextMenu';
-import Modal from './Modal';
-import Button from './Button';
+import Components from './Component';
 
 export default class Handler implements IHandler {
     client: CustomClient;
@@ -102,7 +101,7 @@ export default class Handler implements IHandler {
         );
 
         file.map(async (file: string) => {
-            const component: Modal | Button = new (await import(file)).default(
+            const component: Components = new (await import(file)).default(
                 this.client
             );
 
@@ -113,11 +112,7 @@ export default class Handler implements IHandler {
                 return delete require.cache[require.resolve(file)];
             }
 
-            if (file.split('/').filter(Boolean).slice(-2, -1)[0] == 'modals')
-                this.client.modals.set(component.name, component as Modal);
-
-            if (file.split('/').filter(Boolean).slice(-2, -1)[0] == 'buttons')
-                this.client.buttons.set(component.name, component as Button);
+            this.client.components.set(component.name, component);
 
             return delete require.cache[require.resolve(file)];
         });

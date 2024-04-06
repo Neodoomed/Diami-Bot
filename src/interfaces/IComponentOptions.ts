@@ -1,4 +1,4 @@
-export default interface IInteraction {
+export default interface IComponentOptions {
     name: string;
     description: string;
 }

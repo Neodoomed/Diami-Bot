@@ -7,8 +7,7 @@ import Handler from './Handler';
 import Command from './Command';
 import SubCommand from './SubCommand';
 import mongoose, { connection } from 'mongoose';
-import Modal from './Modal';
-import Button from './Button';
+import Components from './Component';
 
 dotenv.config();
 
@@ -18,8 +17,7 @@ export default class CustomClient extends Client implements ICustomClient {
     handler: Handler;
     commands: Collection<string, Command | any>;
     subCommands: Collection<string, SubCommand>;
-    modals: Collection<string, Modal>;
-    buttons: Collection<string, Button>;
+    components: Collection<string, Components>;
     cooldowns: Collection<string, Collection<string, number>>;
     developmentMode: boolean;
 
@@ -61,8 +59,7 @@ export default class CustomClient extends Client implements ICustomClient {
         this.handler = new Handler(this);
         this.commands = new Collection();
         this.subCommands = new Collection();
-        this.modals = new Collection();
-        this.buttons = new Collection();
+        this.components = new Collection();
         this.cooldowns = new Collection();
         this.developmentMode = process.argv.slice(2).includes('--dev');
     }

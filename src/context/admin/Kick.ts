@@ -1,10 +1,8 @@
 import {
     ActionRowBuilder,
     ApplicationCommandType,
-    CacheType,
     EmbedBuilder,
     ModalBuilder,
-    ModalSubmitInteraction,
     PermissionsBitField,
     TextChannel,
     TextInputBuilder,
@@ -84,25 +82,24 @@ export default class KickContext extends ContextMenu {
             time: 10000,
         });
 
-        //modalSubmitInteraction.reply({
-        //    content: `${modalSubmitInteraction.fields.getTextInputValue('kickReason')}`,
-        //    ephemeral: true,
-        //});
-
         reason = modalSubmitInteraction.fields.getTextInputValue('kickReason');
         try {
             const targetUser = await int.guild?.members.fetch(target.id);
-            modalSubmitInteraction.reply({
-                embeds: [
-                    new EmbedBuilder()
-                        .setColor('Blue')
-                        .setDescription(
-                            `🥾 Usuario: ${targetUser} fue pateado del server.`
-                        ),
-                ],
-                ephemeral: true,
-            });
-            //targetUser?.kick(reason);
+            if (targetUser) {
+                modalSubmitInteraction.reply({
+                    embeds: [
+                        new EmbedBuilder()
+                            .setColor('Blue')
+                            .setDescription(
+                                `🥾 Usuario: ${targetUser} fue pateado del server.`
+                            ),
+                    ],
+                    ephemeral: true,
+                });
+                targetUser.kick(
+                    `${reason} // Acción por : ${int.user.displayName}`
+                );
+            }
         } catch {
             modalSubmitInteraction.reply({
                 embeds: [
