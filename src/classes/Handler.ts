@@ -8,7 +8,6 @@ import SubCommand from './SubCommand';
 import ContextMenu from './ContextMenu';
 import Modal from './Modal';
 import Button from './Button';
-import { connection } from 'mongoose';
 
 export default class Handler implements IHandler {
     client: CustomClient;
@@ -147,20 +146,5 @@ export default class Handler implements IHandler {
                 this.client.logger.warning(`${reason}.`);
             }
         );
-    }
-
-    async mongoEvents() {
-        connection.on('connected', () => {
-            this.client.logger.mongo(`Conectado.`);
-        });
-        connection.on('connecting', () => {
-            this.client.logger.mongo(`Conectando...`);
-        });
-        connection.on('disconnected', () => {
-            this.client.logger.mongo(`Conexión perdida.`);
-        });
-        connection.on('error', (e) => {
-            this.client.logger.mongo(`[ERROR] e`);
-        });
     }
 }

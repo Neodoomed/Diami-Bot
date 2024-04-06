@@ -1,8 +1,10 @@
 import {
     ActionRowBuilder,
     ApplicationCommandType,
+    CacheType,
     EmbedBuilder,
     ModalBuilder,
+    ModalSubmitInteraction,
     PermissionsBitField,
     TextChannel,
     TextInputBuilder,
@@ -32,19 +34,25 @@ export default class KickContext extends ContextMenu {
         const errorEmbed = new EmbedBuilder().setColor('Red');
 
         const kickReason = new TextInputBuilder({
-            custom_id: 'kickReason',
+            customId: 'kickReason',
             label: 'Por que lo vamos a patear?',
             style: TextInputStyle.Paragraph,
+            placeholder: `Músico-testiculares (Por que a ${int.user.displayName} le cantaron las pelotas.)`,
+            value: `Músico-testiculares (Por que a ${int.user.displayName} le cantaron las pelotas.)`,
         });
         const actionRow =
             new ActionRowBuilder<TextInputBuilder>().addComponents(kickReason);
 
         const modal = new ModalBuilder({
-            custom_id: `kick-${int.user.id}`,
+            customId: `kick-${int.user.id}`,
             title: `Patear a ${target.displayName}`,
         }).addComponents(actionRow);
 
         if (!target) return;
+
+        const filter: any = (i: any) => {
+            if (i.customId === `kick-${int.user.id}`) return true;
+        };
 
         if (target.id == int.user.id) {
             int.reply({
@@ -59,15 +67,32 @@ export default class KickContext extends ContextMenu {
         if (target.id == this.client.user?.id) {
             int.reply({
                 embeds: [
-                    errorEmbed.setDescription(`🟥 Que haces! Anda pa'ya bobo!`),
+                    errorEmbed.setDescription(
+                        `🟥 Que haces!? Anda pa'ya bobo!`
+                    ),
                 ],
                 ephemeral: true,
             });
             return;
         }
+
+        await int.showModal(modal);
+        //int.deferReply({ ephemeral: true });
+
+        const modalSubmitInteraction = await int.awaitModalSubmit({
+            filter,
+            time: 10000,
+        });
+
+        //modalSubmitInteraction.reply({
+        //    content: `${modalSubmitInteraction.fields.getTextInputValue('kickReason')}`,
+        //    ephemeral: true,
+        //});
+
+        reason = modalSubmitInteraction.fields.getTextInputValue('kickReason');
         try {
             const targetUser = await int.guild?.members.fetch(target.id);
-            int.reply({
+            modalSubmitInteraction.reply({
                 embeds: [
                     new EmbedBuilder()
                         .setColor('Blue')
@@ -78,9 +103,8 @@ export default class KickContext extends ContextMenu {
                 ephemeral: true,
             });
             //targetUser?.kick(reason);
-            //return;
         } catch {
-            int.reply({
+            modalSubmitInteraction.reply({
                 embeds: [
                     errorEmbed.setDescription(`🟥 Error al patear al usuario.`),
                 ],
