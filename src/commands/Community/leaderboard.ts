@@ -7,6 +7,7 @@ import Command from '../../classes/Command';
 import CustomClient from '../../classes/CustomClient';
 import Category from '../../enums/Category';
 import UserLevel from '../../schemas/UserLevel';
+import path = require('path');
 
 export default class LeaderBoard extends Command {
     constructor(client: CustomClient) {
@@ -25,13 +26,16 @@ export default class LeaderBoard extends Command {
 
     async Execute(int: ChatInputCommandInteraction): Promise<any> {
         const { guild } = int;
-
+        let rank: string = '';
+        let userTag: string = '';
+        let exp: string = '';
+        let level: string = '';
         let text: string = '';
 
         const data = await UserLevel.find({ guildId: `${guild?.id}` })
             .sort({
-                xp: -1,
-                level: -1,
+                xp: 1,
+                level: 1,
             })
             .limit(10);
 
@@ -39,22 +43,39 @@ export default class LeaderBoard extends Command {
 
         await int.deferReply();
 
-        for (const user of data) {
+        for (let i = 0; i < data.length; i++) {
             //user.level
-            const userTag = await this.client.user?.fetch(user.id);
+            const user = await this.client.users.fetch(data[i].userId);
+            //const user = await int.guild?.members.cache.get(data[i].userId)?.fetch();
 
-            text = `\`${userTag} | XP: ${user.xp} | Level: ${user.level}\``;
+            //const rank = `${i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : i + 1}`;
+            //text += `${rank} - **${user?.displayName}** \t| XP: ${data[i].totalXp} \t| Level: ${data[i].level} \n`;
+
+            rank += `${i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : i + 1}\n`;
+            userTag += `**${user}**\n`;
+            exp += `${data[i].totalXp}\n`;
+            level += `**${data[i].level}**  \`\`exp:${data[i].totalXp}\`\` \n`;
         }
-
-        int.reply({
+        const icon = path.join(process.cwd(), '/images/approval.png'); // process.cwd().replace(/\\/g, '/')
+        console.log(icon);
+        int.editReply({
             embeds: [
                 new EmbedBuilder()
                     .setColor('Random')
-                    .setTitle(`Top 10 de nivel de ${int.guild?.name}`)
-                    .setDescription(text)
+                    .setTitle(`Top de ${int.guild?.name}`)
+                    //.setDescription(text)
+                    .addFields(
+                        { name: 'Rank', value: rank, inline: true },
+                        { name: 'User', value: userTag, inline: true },
+                        //{ name: 'Exp', value: exp, inline: true },
+                        { name: 'Level', value: level, inline: true }
+                    )
+                    .setThumbnail(
+                        `https://media.discordapp.net/attachments/1003047615409176627/1226747761571926016/approval.png?ex=6625e4e2&is=66136fe2&hm=0941f4ffcc185a377386dc104382cb8b24e2b1fa69b11ce7e3d618f7642c04aa&=&format=webp&quality=lossless`
+                    )
                     .setTimestamp()
                     .setFooter({
-                        text: `El Emperador protege. LeaderBoard.`,
+                        text: `LeaderBoard.\t\t\t\t\t\t\t\tEl Emperador protege.`,
                     }),
             ],
         });

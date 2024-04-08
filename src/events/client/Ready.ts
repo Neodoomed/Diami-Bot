@@ -72,6 +72,8 @@ export default class Ready extends Event {
                 `Sincronizados ${devCommands.length} (/) comandos Dev.`
             );
         }
+        //console.log(__dirname);
+        //console.log(process.cwd());
         // ctrl k c
         /*
         if (this.client?.application?.commands) {

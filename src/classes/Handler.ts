@@ -62,7 +62,7 @@ export default class Handler implements IHandler {
                 return;
             }
             this.client.commands.set(command.name, command as Command);
-            console.info(`[SUCCESS]\tCommand: ${command.name}`);
+            //console.info(`[SUCCESS]\tCommand: ${command.name}`);
 
             delete require.cache[require.resolve(file)];
         });
