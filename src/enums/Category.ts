@@ -3,6 +3,7 @@ enum Category {
     Developer = 'Developer',
     Administration = 'Administration',
     Configuration = 'Configuration',
+    Community = 'Community',
     Games = 'Games',
     Misc = 'Misc',
 }

@@ -61,10 +61,10 @@ export default class Handler implements IHandler {
                 );
                 return;
             }
-
             this.client.commands.set(command.name, command as Command);
+            console.info(`[SUCCESS]\tCommand: ${command.name}`);
 
-            return delete require.cache[require.resolve(file)];
+            delete require.cache[require.resolve(file)];
         });
     }
 

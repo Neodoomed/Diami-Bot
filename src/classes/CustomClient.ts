@@ -16,6 +16,7 @@ export default class CustomClient extends Client implements ICustomClient {
     logger: Logger;
     handler: Handler;
     commands: Collection<string, Command | any>;
+    commandsList: any[];
     subCommands: Collection<string, SubCommand>;
     components: Collection<string, Components>;
     cooldowns: Collection<string, Collection<string, number>>;
@@ -27,6 +28,8 @@ export default class CustomClient extends Client implements ICustomClient {
                 GatewayIntentBits.Guilds,
                 GatewayIntentBits.GuildMembers,
                 GatewayIntentBits.GuildMessages,
+                GatewayIntentBits.GuildEmojisAndStickers,
+                GatewayIntentBits.GuildMessageReactions,
                 GatewayIntentBits.MessageContent,
                 GatewayIntentBits.GuildVoiceStates,
             ],
@@ -60,6 +63,7 @@ export default class CustomClient extends Client implements ICustomClient {
         this.commands = new Collection();
         this.subCommands = new Collection();
         this.components = new Collection();
+        this.commandsList = [];
         this.cooldowns = new Collection();
         this.developmentMode = process.argv.slice(2).includes('--dev');
     }

@@ -1,11 +1,4 @@
-import {
-    ButtonInteraction,
-    CommandInteraction,
-    EmbedBuilder,
-    Events,
-    Interaction,
-    ModalSubmitInteraction,
-} from 'discord.js';
+import { Events, Interaction } from 'discord.js';
 import Event from '../../classes/Event';
 import CustomClient from '../../classes/CustomClient';
 

@@ -16,6 +16,6 @@ export default interface ICommand {
     cooldown: number;
     dev: boolean;
 
-    Execute(int: ChatInputCommandInteraction): void;
-    AutoComplete(int: AutocompleteInteraction): void;
+    Execute(int: ChatInputCommandInteraction): Promise<void>;
+    AutoComplete(int: AutocompleteInteraction): Promise<void>;
 }

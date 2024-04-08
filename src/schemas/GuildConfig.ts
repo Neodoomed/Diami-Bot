@@ -7,6 +7,10 @@ interface IGuildConfig {
             enabled: boolean;
             channelId: string;
         };
+        develop: {
+            enabled: boolean;
+            channelId: string;
+        };
     };
 }
 

@@ -15,7 +15,7 @@ export default class TestContext extends ContextMenu {
             category: Category.Developer,
             type: ApplicationCommandType.User,
             default_member_permissions: PermissionsBitField.Flags.Administrator,
-            dev: false,
+            dev: true,
         });
     }
 

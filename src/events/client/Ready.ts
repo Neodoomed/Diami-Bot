@@ -22,17 +22,17 @@ export default class Ready extends Event {
         const clientId = this.client.developmentMode
             ? this.client.config.devClientId
             : this.client.config.clientId;
-        const rest = new REST().setToken(
+        const rest = new REST({ version: '10' }).setToken(
             this.client.developmentMode
                 ? this.client.config.devToken
                 : this.client.config.token
         );
 
-        // Clear Global commands
-        rest.put(Routes.applicationCommands(clientId), {
-            body: [],
-        });
-        // Clear Dev commands
+        //? Clear Global commands
+        //rest.put(Routes.applicationCommands(clientId), {
+        //    body: [],
+        //});
+        //? Clear Dev commands
         rest.put(
             Routes.applicationGuildCommands(
                 clientId,
@@ -67,11 +67,20 @@ export default class Ready extends Event {
                     ),
                 }
             );
+
             this.client.logger.info(
                 `Sincronizados ${devCommands.length} (/) comandos Dev.`
             );
         }
         // ctrl k c
+        /*
+        if (this.client?.application?.commands) {
+            const cmd = this.GetJson(this.client.commands);
+            await this.client.application.commands.set(cmd as any);
+            this.client.logger.info(
+                `Sincronizados ${cmd.length} (/) comandos Globales.`
+            );
+        }*/
     }
 
     private GetJson(commands: Collection<string, any>): object[] {
