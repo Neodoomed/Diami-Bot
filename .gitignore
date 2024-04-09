@@ -1,6 +1,7 @@
-/.vscode
-/node_modules
-/dist/
+.vscode/
+node_modules/
+dist/
+.VSCodeCounter/
 
 .env
 environment.d.ts

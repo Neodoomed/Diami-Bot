@@ -23,11 +23,11 @@ export default class Presence extends Event {
         this.client.user?.setPresence({
             activities: [
                 {
-                    name: 'Menos fragmentado que ayer, pero mas fragmentado que mañana.',
+                    name: 'listo para matar a dios, o convertirme en él!...',
                     type: ActivityType.Playing,
                 },
             ],
-            status: PresenceUpdateStatus.Idle,
+            status: PresenceUpdateStatus.Online,
         });
     }
 }

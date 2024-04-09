@@ -11,6 +11,8 @@ import Category from '../../enums/Category';
 import UserLevel from '../../schemas/UserLevel';
 import { profileImage } from 'discord-arts';
 
+import { createLevelUp } from '../../classes/CustomCanvas';
+
 export default class Rank extends Command {
     constructor(client: CustomClient) {
         super(client, {
