@@ -16,7 +16,24 @@ export default class LevelSystem extends Event {
     async Execute(message: Message) {
         const { guild, author, channel } = message;
 
+        if (
+            message.content.includes('http://') ||
+            message.content.includes('https://')
+        )
+            return;
         if (message.content.length < 10) return;
+        if (!message.content.split(' ')[1]) return;
+
+        if (message.content.includes('asd')) return;
+        if (message.content.includes('qwe')) return;
+        if (message.content.includes('zxc')) return;
+        if (message.content.includes('lorem')) return;
+        if (message.content.includes('ipsum')) return;
+
+        let letters = message.content.replace(/[^a-zA-Z]/g, '');
+        let percent = letters.length / message.content.length;
+        let umbral = 0.4;
+        if (percent < umbral) return;
 
         if (!guild || author.bot) return;
         try {
@@ -50,7 +67,9 @@ export default class LevelSystem extends Event {
                     .setThumbnail(
                         `https://cdn.discordapp.com/attachments/1227001009574772777/1227005966071890100/1up.png?ex=6626d55a&is=6614605a&hm=193b99963102c6efa825f6700c165bd2350b0033b5c21fed6feb0a71bc0deddf&`
                     )
-                    .setDescription(`## ${author}, subes de nivel!`);
+                    .setDescription(
+                        `## ${author}, subes de nivel! \u200B\u200B\u200B\u200B\u200B\u200B\u200B\u200B\u200B\u200B\u200B\u200B\u200B\u200B\u200B\u200B\u200B\u200B`
+                    );
 
                 channel.send({
                     embeds: [embed],

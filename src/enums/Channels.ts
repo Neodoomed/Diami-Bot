@@ -4,8 +4,8 @@ enum Channels {
     General = 'general',
     Bienvenida = 'welcome',
     Reglas = 'rules',
-    Ticket = 'ticket',
-    Music = 'music',
+    Sugerencia = 'ticket',
+    Reporte = 'report',
 }
 
 export default Channels;

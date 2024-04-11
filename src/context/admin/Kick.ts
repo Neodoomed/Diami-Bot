@@ -83,31 +83,34 @@ export default class KickContext extends ContextMenu {
         });
 
         reason = modalSubmitInteraction.fields.getTextInputValue('kickReason');
-        try {
-            const targetUser = await int.guild?.members.fetch(target.id);
-            if (targetUser) {
-                modalSubmitInteraction.reply({
-                    embeds: [
-                        new EmbedBuilder()
-                            .setColor('Blue')
-                            .setDescription(
-                                `🥾 Usuario: ${targetUser} fue pateado del server.`
+
+        const targetUser = await int.guild?.members.fetch(target.id);
+        if (targetUser) {
+            targetUser
+                .kick(`${reason} // Acción por : ${int.user.displayName}`)
+                .then(() => {
+                    modalSubmitInteraction.reply({
+                        embeds: [
+                            new EmbedBuilder()
+                                .setColor('Blue')
+                                .setDescription(
+                                    `🥾 Usuario: ${targetUser} fue pateado del server.`
+                                ),
+                        ],
+                        ephemeral: true,
+                    });
+                })
+                .catch((e) => {
+                    modalSubmitInteraction.reply({
+                        embeds: [
+                            errorEmbed.setDescription(
+                                `🟥 Error al patear al usuario. \n ${e}`
                             ),
-                    ],
-                    ephemeral: true,
+                        ],
+                        ephemeral: true,
+                    });
+                    return;
                 });
-                targetUser.kick(
-                    `${reason} // Acción por : ${int.user.displayName}`
-                );
-            }
-        } catch {
-            modalSubmitInteraction.reply({
-                embeds: [
-                    errorEmbed.setDescription(`🟥 Error al patear al usuario.`),
-                ],
-                ephemeral: true,
-            });
-            return;
         }
 
         const guild = await GuildConfig.findOne({
@@ -121,15 +124,27 @@ export default class KickContext extends ContextMenu {
             channelLog?.send({
                 embeds: [
                     new EmbedBuilder()
-                        .setColor('Blue')
-                        .setThumbnail(target.displayAvatarURL())
-                        .setAuthor({ name: `🥾 Pateado` })
-                        .setDescription(
-                            `**Usuario:** ${target.displayName} \`${target.id}\`\n**Razón:** \`${reason}\``
+                        .setColor('Orange')
+                        .setTitle(`🔶 Moderación`)
+                        .setThumbnail(
+                            'https://media.discordapp.net/attachments/1227001009574772777/1227725136770105445/moderation-icon.png?ex=66297322&is=6616fe22&hm=075e09cde1380d813217bc2058cf51363ef492d4e9be8ac3fb9a24fb6a1f25f9&=&format=webp&quality=lossless'
                         )
+                        .setDescription(
+                            `🥾 El mod ${int.user} pateo al usuario ${target}.`
+                        )
+                        .addFields({
+                            name: `Usurario`,
+                            value: `${target.displayName} | \`\`${target.id}\`\``,
+                        })
+                        .addFields({
+                            name: `Razón:`,
+                            value: `${reason}`,
+                        })
                         .setTimestamp()
                         .setFooter({
-                            text: `Realizado por ${int.user.displayName} | ${int.user.id}\t\tEl Emperador Protege.`,
+                            text:
+                                `El Emperador Protege.` +
+                                `\u200B\t\u200B\t\u200B\t\u200B\t\u200B\t\u200B\t\u200B\t\u200B\t\u200B\t\u200B\t\u200B\t\u200B\t\u200B\t\u200B\t`,
                         }),
                 ],
             });

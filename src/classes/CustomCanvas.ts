@@ -5,7 +5,7 @@ export class createLevelUp {
     private canvas: any;
     client: CustomClient;
     userId: string;
-    customBackground: string;
+    background: string;
     backgroundBlur: boolean;
     gif: boolean;
     customIcon: string;
@@ -13,7 +13,7 @@ export class createLevelUp {
     constructor(client: CustomClient) {
         this.client = client;
         this.userId = '';
-        this.customBackground = '';
+        this.background = '';
         this.backgroundBlur = false;
         this.gif = false;
         this.customIcon = '';
@@ -26,7 +26,7 @@ export class createLevelUp {
     }
     /* Fondo (url) */
     public setCustomBackground(background: string) {
-        this.customBackground = background;
+        this.background = background;
         return this;
     }
     /* Desenfoque de Fondo */
@@ -47,7 +47,12 @@ export class createLevelUp {
     /* Obtener el tamaño de las imágenes */
     private async _getImageSize() {}
     /* Renderer la imagen */
-    private async _renderFrame() {}
+    private async _renderFrame() {
+        const canvas = createCanvas(885, 200);
+        const ctx = canvas.getContext('2d');
+
+        const cardBackground = await loadImage(this.background);
+    }
 }
 
 export class createRank {
@@ -101,4 +106,3 @@ export class createRank {
         const ctx = canvas.getContext('2d');
     }
 }
-
