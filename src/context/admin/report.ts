@@ -91,7 +91,7 @@ export default class ReportContext extends ContextMenu {
                             new EmbedBuilder()
                                 .setColor('Blue')
                                 .setThumbnail(target.displayAvatarURL())
-                                .setTitle(`❕ Reporte:`)
+                                .setTitle(`📣 Reporte:`)
                                 .setDescription(
                                     `El usuario  ${target} | \`\`${target.id}\`\` fue reportado. \n`
                                 )

@@ -31,13 +31,12 @@ export default class AuditMessageDelete extends Event {
                         .setColor('Red')
                         //.setThumbnail(target.displayAvatarURL())
                         .setTitle(`🟥  Mensaje Eliminado.`)
+                        .setDescription(
+                            `**Autor:** ${message.author} **Canal:** ${message.channel}`
+                        )
                         .addFields({
                             name: `Mensaje:`,
                             value: `${deleted}`,
-                        })
-                        .addFields({
-                            name: `Autor:`,
-                            value: `${message.author}`,
                         })
                         .setThumbnail(
                             `https://media.discordapp.net/attachments/1227001009574772777/1227722999361441843/log.png?ex=66297125&is=6616fc25&hm=fc3f1dc2656fb2b5eaa6556ee3d9093cef36f93b62e48816921343d4e2a653e6&=&format=webp&quality=lossless`

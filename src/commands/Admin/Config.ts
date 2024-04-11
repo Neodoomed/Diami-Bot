@@ -50,12 +50,16 @@ export default class Config extends Command {
                                     value: 'confession',
                                 },
                                 {
+                                    name: 'Confesión Reg',
+                                    value: 'confessionAdmin',
+                                },
+                                {
                                     name: 'NSFW',
                                     value: 'nsfw',
                                 },
                                 {
                                     name: 'Sugerencias',
-                                    value: 'ticket',
+                                    value: 'suggestion',
                                 },
                                 {
                                     name: 'Reporte',

@@ -5,10 +5,11 @@ interface IGuildConfig {
     channels: {
         nsfw: string;
         confession: string;
+        confessionAdmin: string;
         general: string;
         welcome: string;
         rules: string;
-        ticket: string;
+        suggestion: string;
         report: string;
     };
     logs: {
@@ -31,10 +32,11 @@ export default model<IGuildConfig>(
             channels: {
                 nsfw: String,
                 confession: String,
+                confessionAdmin: String,
                 general: String,
                 welcome: String,
                 rules: String,
-                ticket: String,
+                suggestion: String,
                 report: String,
             },
             logs: {

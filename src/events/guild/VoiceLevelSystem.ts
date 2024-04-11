@@ -3,6 +3,7 @@ import CustomClient from '../../classes/CustomClient';
 import Event from '../../classes/Event';
 import VoiceChannel from '../../schemas/VoiceChannel';
 import UserLevel from '../../schemas/UserLevel';
+import Level from '../../classes/Level';
 
 export default class VoiceLevelSystem extends Event {
     constructor(client: CustomClient) {
@@ -30,15 +31,7 @@ export default class VoiceLevelSystem extends Event {
                 userId: memberID,
             });
 
-        let dataLevel = await UserLevel.findOne({
-            guildId: `${guildID}`,
-            userId: `${memberID}`,
-        });
-        if (!dataLevel)
-            dataLevel = await UserLevel.create({
-                guildId: guildID,
-                userId: memberID,
-            });
+        const userLevel = await new Level(memberID, guildID);
 
         if (!oldState.channel && newState.channel) {
             data.startTime = Date.now();
@@ -56,6 +49,8 @@ export default class VoiceLevelSystem extends Event {
             for (let i = 0; i < give; i++) {
                 gain += Math.round(Math.random() * 3);
             }
+
+            userLevel.addExp(gain);
 
             data.totalTime += elapsedTime;
             data.online = false;

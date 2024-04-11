@@ -40,6 +40,10 @@ export default class CustomClient extends Client implements ICustomClient {
                 Partials.Message,
                 Partials.Reaction,
             ],
+            allowedMentions: {
+                parse: ['users', 'roles'],
+                repliedUser: true,
+            },
         });
         this.config = {
             token: process.env.DISCORD_TOKEN as string,
