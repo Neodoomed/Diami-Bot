@@ -4,7 +4,7 @@
 ![Status](https://img.shields.io/badge/Status-En%20progreso-blue)
 ![Version](https://img.shields.io/badge/Curren_version-0.5.2-blue)
 ![discord.js](https://img.shields.io/github/package-json/dependency-version/KevinNovak/Discord-Bot-TypeScript-Template/discord.js)
-![License](https://img.shields.io/badge/licence-GNU-green)
+![License](https://img.shields.io/badge/licence-MIT-green)
 ![License](https://img.shields.io/github/license/Neodoomed/Adonalsium-Bot)
 ![Last Commit](https://img.shields.io/github/last-commit/Neodoomed/AdonalsiumV14.2.svg)
 [![Discord Server](https://discordapp.com/api/guilds/774727090188320808/embed.png)](https://discord.com/invite/3x8uMdpeHR)
@@ -24,14 +24,14 @@ Este Bot es la nueva version del anterior bot conocido como Adonalsium.
 - ``Railway``
 
 
-## 📝 Notes
+## 📝 Notas
 
 Esta ves el core completo del bot fue reescrito y adaptado a los nuevos cambios de la api de Discord y las actualizaciones por parte de MongoDB.</br>
 Este proyecto comenzó junto con el server de [El Diagrama](https://discord.com/invite/3x8uMdpeHR) y es algo que me entretiene y apasiona.</br>
 Asi que solo sera cuestión de seguir
 programando y mejorando las funciones de este Bot para Discord.
 
-## 📦 Requirements
+## 📦 Requerimientos
 
 - Node.js v20 or higher
 - Git
@@ -85,6 +85,8 @@ El proyecto utiliza npm para ejecutar
 
 ## ✨ TODO
 
+Lista de la implementaciones del bot y su estado
+
 - [x] Comandos Slash
 - [ ] Comandos de texto customs
 - [x] Menu Contextual
@@ -92,18 +94,34 @@ El proyecto utiliza npm para ejecutar
 - [x] Animated Avatar
 - [ ] Music
 - [x] Sistema de Level
+    - [x] Experiencia por mensaje
+    - [x] Experience por voz
+    - [x] Leaderboard
+    - [x] Rank
+    - [x] Level up ``Sera modificado el mensaje por un canvas``
 - [ ] Sistema de Economía
-    - [x] Comandos de Economía Básicos
-    - [ ] Empleos
-    - [ ] Tienda de items
-    - [ ] Inventario
+    - [x] Economía Básica
+        - [x] Balance
+        - [x] Extraction
+        - [x] Deposito
+        - [x] Daily
+        - [x] Entregar
+    - [ ] Sistema Empleos
+    - [ ] Sistema de Tienda
+        - [ ] Budges
+        - [ ] Items
+    - [ ] Sistema de Inventario
     - [ ] Eventos
+- [ ] Sistema de Rol
+    - [x] Comando de dados
+    - [ ] Hojas de personaje
+    - [ ] Sistema de de Canal Dedicado
 - [ ] Juegos
-    - [ ] Gachapon
+    - [ ] Gachapón
     - [ ] Auto Hero Combat
-    - [ ] Tower Defense ?
+    - [ ] Tower Defense ``Aun se esta trabajando en el concepto y la aplicación``
     - [ ] Eventos
-- [x] Tarot (La implementación sera porteada del viejo bot)
+- [x] Tarot ``Implementación heredada de Adonalsium bot``
 - [ ] Mascota Virtual
 
 
