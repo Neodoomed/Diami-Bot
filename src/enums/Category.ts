@@ -6,7 +6,18 @@ enum Category {
     Community = 'Community',
     Games = 'Games',
     Misc = 'Misc',
-    Economy = 'economy',
+    Economy = 'Economy',
+}
+
+enum IconsCategory {
+    Utilities = '🧩',
+    Developer = '🪲',
+    Administration = '⚖️',
+    Configuration = '🎚️',
+    Community = '👥',
+    Games = '🎮',
+    Misc = '🎲',
+    Economy = '🪙',
 }
 
 export default Category;

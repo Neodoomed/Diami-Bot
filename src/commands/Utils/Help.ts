@@ -14,8 +14,7 @@ export default class Help extends Command {
             name: 'help',
             description: '❓ Necesitas ayuda con el bot?',
             category: Category.Utilities,
-            default_member_permissions:
-                PermissionsBitField.Flags.UseApplicationCommands,
+            default_member_permissions: PermissionsBitField.Flags.Administrator,
             dm_permissions: false,
             cooldown: 10,
             dev: false,
@@ -24,6 +23,7 @@ export default class Help extends Command {
     }
 
     async Execute(int: ChatInputCommandInteraction): Promise<any> {
+        const selects = Category;
         return;
     }
 }
