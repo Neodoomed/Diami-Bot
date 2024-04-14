@@ -15,7 +15,7 @@ export default class ConfigLogs extends Command {
     constructor(client: CustomClient) {
         super(client, {
             name: 'config-log',
-            description: 'Configuración del log del Bot.',
+            description: '🎚️ Configuración del log del Bot.',
             category: Category.Configuration,
             default_member_permissions: PermissionsBitField.Flags.Administrator,
             dm_permissions: false,
@@ -24,7 +24,7 @@ export default class ConfigLogs extends Command {
             options: [
                 {
                     name: 'toggle',
-                    description: 'Activa/desactiva',
+                    description: '🎚️ Activa/desactiva',
                     type: ApplicationCommandOptionType.Subcommand,
                     options: [
                         {
@@ -53,7 +53,7 @@ export default class ConfigLogs extends Command {
                 },
                 {
                     name: 'set',
-                    description: 'Setear el canal de Logging',
+                    description: '🎚️ Setear el canal de Logging',
                     type: ApplicationCommandOptionType.Subcommand,
                     options: [
                         {

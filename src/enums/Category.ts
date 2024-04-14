@@ -6,6 +6,7 @@ enum Category {
     Community = 'Community',
     Games = 'Games',
     Misc = 'Misc',
+    Economy = 'economy',
 }
 
 export default Category;

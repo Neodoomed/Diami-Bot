@@ -15,7 +15,7 @@ export default class Config extends Command {
     constructor(client: CustomClient) {
         super(client, {
             name: 'config',
-            description: 'Configuración del server.',
+            description: '🎚️ Configuración del server.',
             category: Category.Configuration,
             default_member_permissions: PermissionsBitField.Flags.Administrator,
             dm_permissions: false,
@@ -24,7 +24,7 @@ export default class Config extends Command {
             options: [
                 {
                     name: 'channels',
-                    description: 'Setear el canales',
+                    description: '🎚️ Setear el canales',
                     type: ApplicationCommandOptionType.Subcommand,
                     options: [
                         {
@@ -78,7 +78,7 @@ export default class Config extends Command {
                 },
                 {
                     name: 'roles',
-                    description: 'Setear los Roles',
+                    description: '🎚️ Setear los Roles',
                     type: ApplicationCommandOptionType.Subcommand,
                     options: [
                         {

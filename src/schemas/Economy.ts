@@ -6,8 +6,7 @@ interface IEconomy {
     cash: number;
     bank: number;
     daily: {
-        lastDaily: number;
-        currentDaily: number;
+        lastDaily: Date;
     };
 }
 
@@ -19,8 +18,7 @@ export default model<IEconomy>(
         cash: { type: Number, default: 0 },
         bank: { type: Number, default: 0 },
         daily: {
-            lastDaily: Number,
-            currentDaily: Number,
+            lastDaily: Date,
         },
     })
 );

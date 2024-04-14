@@ -4,6 +4,7 @@ import {
     EmbedBuilder,
     Events,
     Guild,
+    GuildMember,
     PermissionsBitField,
 } from 'discord.js';
 import Command from '../../classes/Command';
@@ -13,8 +14,8 @@ import Category from '../../enums/Category';
 export default class Emit extends Command {
     constructor(client: CustomClient) {
         super(client, {
-            name: 'emir',
-            description: 'Emite un evento.',
+            name: 'emit',
+            description: '🔹 Emite un evento.',
             category: Category.Developer,
             default_member_permissions: PermissionsBitField.Flags.Administrator,
             dm_permissions: false,
@@ -29,6 +30,10 @@ export default class Emit extends Command {
                     choices: [
                         { name: 'GuildCreate', value: Events.GuildCreate },
                         { name: 'GuildDelete', value: Events.GuildDelete },
+                        {
+                            name: 'GuildMemberUpdate',
+                            value: Events.GuildMemberUpdate,
+                        },
                     ],
                 },
             ],
@@ -40,6 +45,13 @@ export default class Emit extends Command {
 
         if (event == Events.GuildCreate || event == Events.GuildDelete) {
             this.client.emit(event, int.guild as Guild);
+        }
+        if (event == Events.GuildMemberUpdate) {
+            this.client.emit(
+                event,
+                int.member as GuildMember,
+                int.member as GuildMember
+            );
         }
 
         int.reply({

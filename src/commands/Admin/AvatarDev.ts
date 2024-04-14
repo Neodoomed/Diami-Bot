@@ -12,7 +12,7 @@ export default class AvatarDev extends Command {
     constructor(client: CustomClient) {
         super(client, {
             name: 'avatar-dev',
-            description: 'Cambia el Avatar por uno animado (In Dev)',
+            description: '🖼️ Cambia el Avatar por uno animado (In Dev)',
             category: Category.Administration,
             default_member_permissions: PermissionsBitField.Flags.Administrator,
             dm_permissions: false,

@@ -75,16 +75,19 @@ export class EconomySystem {
     }
 
     public static async daily(userId: string, guildId: string) {
-        const economy = await Economy.findOne({ userId, guildId });
-        if (!economy) return false;
+        let economy = await Economy.findOne({ userId, guildId });
+        if (!economy) economy = await new Economy({ userId, guildId });
 
-        const amount = Math.round(Math.random() * 100);
-        const lastDaily = economy.daily.lastDaily;
-        const currentDaily = economy.daily.currentDaily;
+        const amount = Math.round(Math.random() * 10) + 5;
+        const lastDaily = economy.daily.lastDaily?.toDateString();
+        const currentDaily = new Date().toDateString();
 
         if (lastDaily === currentDaily) return false;
 
+        economy.daily.lastDaily = new Date();
         economy.cash += amount;
+        economy.save();
+        return amount;
     }
 
     public static async levelUp(
@@ -92,8 +95,9 @@ export class EconomySystem {
         guildId: string,
         amount: number
     ) {
-        const economy = await Economy.findOne({ userId, guildId });
-        if (!economy) return false;
+        let economy = await Economy.findOne({ userId, guildId });
+        if (!economy) economy = await new Economy({ userId, guildId });
+
         economy.cash += amount;
         return true;
     }

@@ -13,7 +13,7 @@ export default class LeaderBoard extends Command {
     constructor(client: CustomClient) {
         super(client, {
             name: 'leaderboard',
-            description: '🔝 Top rango de un usuario.',
+            description: '🔝 Top 10.',
             category: Category.Community,
             default_member_permissions:
                 PermissionsBitField.Flags.UseApplicationCommands,

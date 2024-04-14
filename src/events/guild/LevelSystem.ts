@@ -3,6 +3,7 @@ import CustomClient from '../../classes/CustomClient';
 import Event from '../../classes/Event';
 import UserLevel from '../../schemas/UserLevel';
 import { createLevelUp } from '../../classes/CustomCanvas';
+import { EconomySystem } from '../../classes/Economy';
 import Level from '../../classes/Level';
 
 export default class LevelSystem extends Event {
@@ -38,13 +39,17 @@ export default class LevelSystem extends Event {
 
         if (!guild || author.bot) return;
 
-        const give = Math.round(Math.random() * 10);
-
+        const give = Math.round(Math.random() * 3);
         const UserLevel = await new Level(author.id, guild.id);
         const level = await UserLevel.addExp(give);
         if (level > 0) {
+            EconomySystem.addMoney(
+                author.id,
+                guild.id,
+                'cash',
+                level * level * 50 + 100
+            );
             if (!channel) return;
-
             const embed = new EmbedBuilder()
                 .setColor('DarkBlue')
                 .setThumbnail(

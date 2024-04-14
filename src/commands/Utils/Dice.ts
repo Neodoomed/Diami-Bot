@@ -13,7 +13,7 @@ export default class Dice extends Command {
     constructor(client: CustomClient) {
         super(client, {
             name: 'dice',
-            description: 'Laza los dados',
+            description: '🎲 Laza los dados',
             category: Category.Utilities,
             default_member_permissions:
                 PermissionsBitField.Flags.UseApplicationCommands,
@@ -92,7 +92,9 @@ export default class Dice extends Command {
                 `https://cdn.pixabay.com/photo/2017/08/31/04/01/d20-2699387_960_720.png`
             )
             .setFooter({
-                text: `Enviado por ${int.user.displayName}`,
+                text:
+                    `Enviado por ${int.user.displayName}` +
+                    `\u200B\t\u200B\t\u200B\t\u200B\t\u200B\t\u200B\t\u200B\t\u200B\t\u200B\t\u200B\t\u200B\t\u200B\t\u200B\t\u200B\t`,
                 iconURL: int.user.displayAvatarURL({ extension: 'png' }),
             });
         int.reply({

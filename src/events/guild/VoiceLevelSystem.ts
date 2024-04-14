@@ -29,32 +29,37 @@ export default class VoiceLevelSystem extends Event {
             data = await VoiceChannel.create({
                 guildId: guildID,
                 userId: memberID,
+                startTime: Date.now(),
+                online: false,
             });
 
         const userLevel = await new Level(memberID, guildID);
 
         if (!oldState.channel && newState.channel) {
-            data.startTime = Date.now();
-            data.online = true;
-            data.save();
+            if (!data.online) {
+                data.startTime = Date.now();
+                data.online = true;
+                data.save();
+            }
         } else if (oldState.channel && !newState.channel) {
             //data.startTime = new Date().getTime();
+            if (data.online) {
+                const elapsedTime = Date.now() - data.startTime;
+                const minutos = elapsedTime / 60000;
+                if (minutos < 5) return;
+                const give = Math.round(minutos / 5);
 
-            const elapsedTime = Date.now() - data.startTime;
-            const minutos = elapsedTime / 60000;
-            if (minutos < 5) return;
-            const give = Math.round(minutos / 5);
+                let gain = 0;
+                for (let i = 0; i < give; i++) {
+                    gain += Math.round(Math.random() * 3);
+                }
 
-            let gain = 0;
-            for (let i = 0; i < give; i++) {
-                gain += Math.round(Math.random() * 3);
+                userLevel.addExp(gain);
+
+                data.totalTime += elapsedTime;
+                data.online = false;
+                data.save();
             }
-
-            userLevel.addExp(gain);
-
-            data.totalTime += elapsedTime;
-            data.online = false;
-            data.save();
         }
     }
 }

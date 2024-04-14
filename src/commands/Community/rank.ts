@@ -63,11 +63,31 @@ export default class Rank extends Command {
             ? `https://cdn.discordapp.com/banners/${user.id}/${user.banner}.${format}?size=512`
             : 'https://i.imgur.com/LWcWzlc.png';
         */
+        let badges = [];
+        let customDate = 'Miembro';
+
+        if (member.user.bot) {
+            badges.push('https://cdn3.emoji.gg/emojis/4165-bot.png');
+            customDate = 'Bot';
+        } else if (member.permissions.has('KickMembers')) {
+            if (member.permissions.has('Administrator')) {
+                badges.push(
+                    'https://cdn3.emoji.gg/emojis/8925-blurple-verified.png'
+                );
+                customDate = 'Admin';
+            } else {
+                badges.push('https://cdn3.emoji.gg/emojis/3460-verified.png');
+                customDate = 'Mod';
+            }
+        }
+        // buscar mas emojis en https://emoji.gg/
+        // para rol https://emoji.gg/emoji/2321-nat20
+
         const buffer = await profileImage(member.id, {
-            //customBadges: [  './skull.png', './rocket.png', './crown.png'  ],
+            customBadges: badges,
             //borderColor: member.displayHexColor,
             badgesFrame: true,
-            //customBackground: customBanner,
+            customDate: customDate,
             moreBackgroundBlur: true,
             backgroundBrightness: 100,
             removeAvatarFrame: false,
