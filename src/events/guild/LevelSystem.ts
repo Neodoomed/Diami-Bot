@@ -24,7 +24,7 @@ export default class LevelSystem extends Event {
 
     async Execute(message: Message) {
         const { guild, author, channel } = message;
-        const user = await message.guild?.members.cache.get(author.id)?.fetch();
+        //const user = await message.guild?.members.cache.get(author.id)?.fetch();
 
         if (
             message.content.includes('http://') ||
@@ -60,17 +60,13 @@ export default class LevelSystem extends Event {
             if (!channel) return;
 
             const image = new createLevelUp()
-                //@ts-ignore
-                .setUserName(user?.displayName)
+                .setUserName(author?.displayName)
                 .setUserLevel(level)
-                //@ts-ignore
-                .setCustomBackground(author.bannerURL({ size: 512 }))
-                //@ts-ignore
                 .setUserAvatar(author.displayAvatarURL());
 
             const buffer = await image.createImage();
             const attachment = new AttachmentBuilder(buffer).setName(
-                `${user?.id}_lvlUp.png`
+                `${author?.id}_lvlUp.png`
             );
 
             await channel.send({
