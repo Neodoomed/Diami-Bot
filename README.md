@@ -1,15 +1,14 @@
-![banner](/images/Diami-Banner.png)
+![banner](Assets/Diami-Banner.png)
 # Diami bot [![Discord](https://img.shields.io/badge/El%20Diagrama-blue?style=flat&link=https://discord.com/invite/3x8uMdpeHR)](https://discord.com/invite/3x8uMdpeHR)
 
 ![Status](https://img.shields.io/badge/Status-En%20progreso-blue)
 ![Version](https://img.shields.io/badge/Curren_version-0.5.2-blue)
 ![discord.js](https://img.shields.io/github/package-json/dependency-version/KevinNovak/Discord-Bot-TypeScript-Template/discord.js)
-![License](https://img.shields.io/badge/licence-MIT-green)
-![License](https://img.shields.io/github/license/Neodoomed/Adonalsium-Bot)
+ ![License](https://img.shields.io/github/license/Neodoomed/Adonalsium-Bot)<!-- ![License](https://img.shields.io/badge/licence-MIT-green) -->
 ![Last Commit](https://img.shields.io/github/last-commit/Neodoomed/AdonalsiumV14.2.svg)
 [![Discord Server](https://discordapp.com/api/guilds/774727090188320808/embed.png)](https://discord.com/invite/3x8uMdpeHR)
   
-Diami es un bot para Discord v14 creado para El Diagrama, escrito en [discord.js](https://discord.js.org), [TypeScript](https://www.typescriptlang.org/) y [Mongo](https://www.mongodb.com).
+Diami es un bot para Discord v14 creado para El Diagrama, escrito en [TypeScript](https://www.typescriptlang.org/) y [discord.js](https://discord.js.org).</br>
 Este Bot es la nueva version del anterior bot conocido como Adonalsium. 
 
 

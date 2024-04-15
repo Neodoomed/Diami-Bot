@@ -1,4 +1,11 @@
-import { EmbedBuilder, Events, Guild, Message } from 'discord.js';
+import {
+    AttachmentBuilder,
+    EmbedBuilder,
+    Events,
+    Guild,
+    GuildMember,
+    Message,
+} from 'discord.js';
 import CustomClient from '../../classes/CustomClient';
 import Event from '../../classes/Event';
 import UserLevel from '../../schemas/UserLevel';
@@ -17,6 +24,7 @@ export default class LevelSystem extends Event {
 
     async Execute(message: Message) {
         const { guild, author, channel } = message;
+        const user = await message.guild?.members.cache.get(author.id)?.fetch();
 
         if (
             message.content.includes('http://') ||
@@ -50,17 +58,23 @@ export default class LevelSystem extends Event {
                 level * level * 50 + 100
             );
             if (!channel) return;
-            const embed = new EmbedBuilder()
-                .setColor('DarkBlue')
-                .setThumbnail(
-                    `https://cdn.discordapp.com/attachments/1227001009574772777/1227005966071890100/1up.png?ex=6626d55a&is=6614605a&hm=193b99963102c6efa825f6700c165bd2350b0033b5c21fed6feb0a71bc0deddf&`
-                )
-                .setDescription(
-                    `## ${author}, subes de nivel ${level - 1} a ${level}! \u200B\u200B\u200B\u200B\u200B\u200B\u200B\u200B\u200B\u200B\u200B\u200B\u200B\u200B\u200B\u200B\u200B\u200B`
-                );
 
-            channel.send({
-                embeds: [embed],
+            const image = new createLevelUp()
+                //@ts-ignore
+                .setUserName(user?.displayName)
+                .setUserLevel(level)
+                //@ts-ignore
+                .setCustomBackground(author.bannerURL({ size: 512 }))
+                //@ts-ignore
+                .setUserAvatar(author.displayAvatarURL());
+
+            const buffer = await image.createImage();
+            const attachment = new AttachmentBuilder(buffer).setName(
+                `${user?.id}_lvlUp.png`
+            );
+
+            await channel.send({
+                files: [attachment],
             });
         }
 

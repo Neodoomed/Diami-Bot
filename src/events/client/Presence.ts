@@ -23,8 +23,8 @@ export default class Presence extends Event {
         this.client.user?.setPresence({
             activities: [
                 {
-                    name: 'listo para matar a dios, o convertirme en él!...',
-                    type: ActivityType.Playing,
+                    name: 'Lista para matar a dios, o convertirme en él!...',
+                    type: 4,
                 },
             ],
             status: PresenceUpdateStatus.Online,
