@@ -98,7 +98,7 @@ Lista de la implementaciones del bot y su estado
     - [x] Experience por voz
     - [x] Leaderboard
     - [x] Rank
-    - [x] Level up ``Sera modificado el mensaje por un canvas``
+    - [x] Level up
 - [ ] Sistema de Economía
     - [x] Economía Básica
         - [x] Balance
@@ -121,9 +121,14 @@ Lista de la implementaciones del bot y su estado
     - [ ] Auto Hero Combat
     - [ ] Tower Defense ``Aun se esta trabajando en el concepto y la aplicación``
     - [ ] Eventos
-- [x] Tarot ``Implementación heredada de Adonalsium bot``
+- [x] Tarot
 - [ ] Mascota Virtual
+- [ ] Implantación de IA
 
+## 🙏 Agradecimientos
+
+- [Jab](https://github.com/JavierBagatoli/)
+- A todos los miembros fundacionales del [El Diagrma](https://discord.com/invite/3x8uMdpeHR)
 
 ## 💾 Autor
 
