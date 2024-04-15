@@ -95,9 +95,9 @@ export class createLevelUp {
         ctx.fillRect(0, 0, 885, 150);
         ctx.fill();
 
-        const cardBackground = await loadImage(this.background);
-        ctx.filter = 'blur(9px)';
-        ctx.drawImage(cardBackground, 0, 0, canvas.width, canvas.height);
+        //const cardBackground = await loadImage(this.background);
+        //ctx.filter = 'blur(9px)';
+        //ctx.drawImage(cardBackground, 0, 0, canvas.width, canvas.height);
 
         ctx.globalAlpha = 0.2;
         ctx.fillStyle = '#2a2d33';

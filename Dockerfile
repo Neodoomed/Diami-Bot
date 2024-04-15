@@ -12,4 +12,4 @@ RUN npm install
 COPY . /usr/src/app/
 
 # Ejecutar el programa
-CMD ["npm", "run start:railway"]
+CMD ["npm", "run",  "start:railway"]
