@@ -28,7 +28,7 @@ export default class Tarot extends Command {
                     description:
                         'Cantidad de créditos. (Se depositara todo si no especificas)',
                     type: ApplicationCommandOptionType.String,
-                    require: false,
+                    require: true,
                 },
             ],
         });
