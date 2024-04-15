@@ -56,7 +56,7 @@ export default class Tarot extends Command {
 
         const msgEmbed = new EmbedBuilder()
             .setColor('Random')
-            .setTitle(`El Tarot Del Diagrama`)
+            .setTitle(`Ahora Diami a leer tus cartas.`)
             .setDescription(`**Consulta:** ${text}`)
             .addFields({ name: `${card}`, value: `${detail}` })
             .setThumbnail(
