@@ -5,12 +5,11 @@
     "main": "dist/main.js",
     "scripts": {
         "clean": "del /s /q dist",
-        "clean:linux": "rm –r dist",
         "dev": "tsx watch src/main.ts",
         "build": "tsc --build",
         "start": "npm run clean && npm run build && node dist/main.js",
         "start:dev": "npm run clean && npm run build && node dist/main.js --dev",
-        "start:railway": "npm run clean:linux && npm run build && node dist/main.js"
+        "start:railway": "npm run build && node dist/main.js"
     },
     "keywords": [],
     "author": "Xardax",
