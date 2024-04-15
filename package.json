@@ -5,7 +5,7 @@
     "main": "dist/main.js",
     "scripts": {
         "clean": "del /s /q dist",
-        "clean:linux": "rmdir –r dist",
+        "clean:linux": "rm –r dist",
         "dev": "tsx watch src/main.ts",
         "build": "tsc --build",
         "start": "npm run clean && npm run build && node dist/main.js",
