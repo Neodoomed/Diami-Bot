@@ -3,7 +3,7 @@ import CustomClient from '../../classes/CustomClient';
 import Event from '../../classes/Event';
 import GuildConfig from '../../schemas/GuildConfig';
 
-export default class AuditMemberRemove extends Event {
+export default class AuditMemberAdd extends Event {
     constructor(client: CustomClient) {
         super(client, {
             name: Events.GuildMemberAdd,

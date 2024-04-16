@@ -3,6 +3,8 @@ import {
     ChatInputCommandInteraction,
     EmbedBuilder,
     PermissionsBitField,
+    VoiceBasedChannel,
+    VoiceChannel,
 } from 'discord.js';
 import Command from '../../classes/Command';
 import CustomClient from '../../classes/CustomClient';
@@ -21,7 +23,7 @@ export default class StatusDev extends Command {
             dev: false,
             options: [
                 {
-                    name: 'cannel',
+                    name: 'channel',
                     description: 'Canal de voz',
                     type: ApplicationCommandOptionType.Channel,
                     required: true,
@@ -33,7 +35,14 @@ export default class StatusDev extends Command {
     async Execute(int: ChatInputCommandInteraction) {
         const user = await int.guild?.members.cache.get(int.user.id)?.fetch();
         if (!user) return;
-        const channel = await int.options.getUser('channel');
+        const channel = await int.options.getChannel('channel');
+        if (!channel) return;
+
+        const voiceChannel = await int.guild?.channels.cache
+            .get(channel.id)
+            ?.fetch(true);
+
+        if (!voiceChannel?.isVoiceBased) return;
 
         if (!user?.voice.channel) {
             int.reply({
@@ -50,8 +59,7 @@ export default class StatusDev extends Command {
         }
 
         int.guild?.members.cache.forEach((member) => {
-            if (member.id != user.id) return;
-            if (member.voice.channel == channel)
+            if (member.id != user.id && member.voice.channel == voiceChannel)
                 member.voice.setChannel(user.voice.channel);
         });
 

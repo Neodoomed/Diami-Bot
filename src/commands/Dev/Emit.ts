@@ -30,6 +30,7 @@ export default class Emit extends Command {
                     choices: [
                         { name: 'GuildCreate', value: Events.GuildCreate },
                         { name: 'GuildDelete', value: Events.GuildDelete },
+                        { name: 'MemberAdd', value: Events.GuildMemberAdd },
                         {
                             name: 'GuildMemberUpdate',
                             value: Events.GuildMemberUpdate,
@@ -45,6 +46,9 @@ export default class Emit extends Command {
 
         if (event == Events.GuildCreate || event == Events.GuildDelete) {
             this.client.emit(event, int.guild as Guild);
+        }
+        if (event == Events.GuildMemberAdd) {
+            this.client.emit(event, int.member as GuildMember);
         }
         if (event == Events.GuildMemberUpdate) {
             this.client.emit(

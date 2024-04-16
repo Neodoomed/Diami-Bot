@@ -33,6 +33,7 @@ export default class Ready extends Event {
         //    body: [],
         //});
         //? Clear Dev commands
+        /*
         rest.put(
             Routes.applicationGuildCommands(
                 clientId,
@@ -42,6 +43,7 @@ export default class Ready extends Event {
                 body: [],
             }
         );
+        */
 
         const globalCommands: any = await rest.put(
             Routes.applicationCommands(clientId),
@@ -72,17 +74,6 @@ export default class Ready extends Event {
                 `Sincronizados ${devCommands.length} (/) comandos Dev.`
             );
         }
-        //console.log(__dirname);
-        //console.log(process.cwd());
-        // ctrl k c
-        /*
-        if (this.client?.application?.commands) {
-            const cmd = this.GetJson(this.client.commands);
-            await this.client.application.commands.set(cmd as any);
-            this.client.logger.info(
-                `Sincronizados ${cmd.length} (/) comandos Globales.`
-            );
-        }*/
     }
 
     private GetJson(commands: Collection<string, any>): object[] {
