@@ -136,6 +136,7 @@ export class createLevelUp {
         const canvas = createCanvas(885, 150);
         const ctx = canvas.getContext('2d');
 
+        /*
         GlobalFonts.registerFromPath(
             join(
                 __dirname,
@@ -147,25 +148,26 @@ export class createLevelUp {
             ),
             'Neue'
         );
+        */
 
         const newSize = 40;
         const username = this.user;
         const userColor = '#FFFFFF';
 
         ctx.fillStyle = userColor;
-        ctx.font = `${newSize}px Neue`;
+        ctx.font = `${newSize}px Verdana`;
         ctx.textAlign = 'left';
         //ctx.fillText(username, 150, 88);
         ctx.shadowBlur = 4;
         ctx.strokeStyle = 'black';
         ctx.fillText(username.slice(0, 15), 150, 68);
-        ctx.font = `${newSize - 15}px Neue`;
+        ctx.font = `${newSize - 15}px Verdana`;
         ctx.shadowBlur = 4;
         ctx.strokeStyle = 'black';
         ctx.fillText(`Level up!`, 150, 110);
 
         ctx.fillStyle = userColor;
-        ctx.font = `${newSize}px Neue`;
+        ctx.font = `${newSize}px Verdana`;
         ctx.textAlign = 'center';
         //ctx.fillText(`Level up`, 400, 88);
         ctx.strokeStyle = 'black';
