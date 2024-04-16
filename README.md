@@ -4,8 +4,8 @@
 ![Status](https://img.shields.io/badge/Status-En%20progreso-blue)
 ![Version](https://img.shields.io/badge/Curren_version-0.5.2-blue)
 ![discord.js](https://img.shields.io/github/package-json/dependency-version/KevinNovak/Discord-Bot-TypeScript-Template/discord.js)
- ![License](https://img.shields.io/github/license/Neodoomed/Adonalsium-Bot)<!-- ![License](https://img.shields.io/badge/licence-MIT-green) -->
-![Last Commit](https://img.shields.io/github/last-commit/Neodoomed/AdonalsiumV14.2.svg)
+ ![License](https://img.shields.io/github/license/Neodoomed/Diami-bot)<!-- ![License](https://img.shields.io/badge/licence-MIT-green) -->
+![Last Commit](https://img.shields.io/github/last-commit/Neodoomed/Diami-bot)
 [![Discord Server](https://discordapp.com/api/guilds/774727090188320808/embed.png)](https://discord.com/invite/3x8uMdpeHR)
   
 Diami es un bot para Discord v14 creado para El Diagrama, escrito en [TypeScript](https://www.typescriptlang.org/) y [discord.js](https://discord.js.org).</br>
@@ -97,6 +97,7 @@ Lista de la implementaciones del bot y su estado
 - [ ] Comandos de texto customs
 - [x] Menu Contextual
 - [x] Logger
+- [x] Custom Welcome Message
 - [ ] Dashboard
 - [x] Animated Avatar
 - [ ] Music
