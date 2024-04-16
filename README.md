@@ -81,6 +81,13 @@ El proyecto utiliza npm para ejecutar
 - Git
 - MongoDB
 
+## 📈 Rendimiento
+
+El cambio del core del Diami logro una mejora circunstancial en el consumo de recurso del bot.
+
+![Ado](/Assets/Readme/Captura%20de%20pantalla%202024-04-15%20220741.png)
+![Diami](/Assets/Readme/Captura%20de%20pantalla%202024-04-15%20220915.png)
+
 
 ## ✨ TODO
 
@@ -128,7 +135,7 @@ Lista de la implementaciones del bot y su estado
 ## 🙏 Agradecimientos
 
 - [Jab](https://github.com/JavierBagatoli/)
-- A todos los miembros fundacionales del [El Diagrma](https://discord.com/invite/3x8uMdpeHR)
+- A todos los miembros fundacionales del [El Diagrama](https://discord.com/invite/3x8uMdpeHR)
 
 ## 💾 Autor
 
