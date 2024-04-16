@@ -155,19 +155,19 @@ export class createLevelUp {
         const userColor = '#FFFFFF';
 
         ctx.fillStyle = userColor;
-        ctx.font = `${newSize}px Verdana`;
+        ctx.font = `${newSize}px Helvetica Bold`;
         ctx.textAlign = 'left';
         //ctx.fillText(username, 150, 88);
         ctx.shadowBlur = 4;
         ctx.strokeStyle = 'black';
         ctx.fillText(username.slice(0, 15), 150, 68);
-        ctx.font = `${newSize - 15}px Verdana`;
+        ctx.font = `${newSize - 15}px Helvetica Bold`;
         ctx.shadowBlur = 4;
         ctx.strokeStyle = 'black';
         ctx.fillText(`Level up!`, 150, 110);
 
         ctx.fillStyle = userColor;
-        ctx.font = `${newSize}px Verdana`;
+        ctx.font = `${newSize}px Helvetica Bold`;
         ctx.textAlign = 'center';
         //ctx.fillText(`Level up`, 400, 88);
         ctx.strokeStyle = 'black';
