@@ -95,11 +95,11 @@ export class createLevelUp {
         ctx.fillRect(0, 0, 885, 150);
         ctx.fill();
 
-        //const cardBackground = await loadImage(this.background);
-        //ctx.filter = 'blur(9px)';
-        //ctx.drawImage(cardBackground, 0, 0, canvas.width, canvas.height);
+        const cardBackground = await loadImage(this.userAvatar);
+        ctx.filter = 'blur(9px)';
+        ctx.drawImage(cardBackground, 0, -400, canvas.width, canvas.width);
 
-        ctx.globalAlpha = 0.2;
+        ctx.globalAlpha = 0.7;
         ctx.fillStyle = '#2a2d33';
         ctx.beginPath();
         ctx.fillRect(0, 0, 885, 150);
@@ -156,15 +156,23 @@ export class createLevelUp {
         ctx.font = `${newSize}px Neue`;
         ctx.textAlign = 'left';
         //ctx.fillText(username, 150, 88);
+        ctx.shadowBlur = 4;
+        ctx.strokeStyle = 'black';
         ctx.fillText(username.slice(0, 15), 150, 68);
         ctx.font = `${newSize - 15}px Neue`;
+        ctx.shadowBlur = 4;
+        ctx.strokeStyle = 'black';
         ctx.fillText(`Level up!`, 150, 110);
 
         ctx.fillStyle = userColor;
         ctx.font = `${newSize}px Neue`;
         ctx.textAlign = 'center';
         //ctx.fillText(`Level up`, 400, 88);
+        ctx.strokeStyle = 'black';
+        ctx.shadowBlur = 4;
         ctx.fillText(`${this.level - 1}`, 500, 88);
+        ctx.strokeStyle = 'black';
+        ctx.shadowBlur = 4;
         ctx.fillText(`${this.level}`, 675, 88);
 
         return canvas;
