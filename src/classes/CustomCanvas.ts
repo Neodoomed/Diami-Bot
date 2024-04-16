@@ -66,22 +66,22 @@ export class createLevelUp {
         ctx.clip();
 
         const cardBase = await this._renderBackground();
-        ctx.drawImage(cardBase, 0, 0);
+        await ctx.drawImage(cardBase, 0, 0);
 
         const avatar = await this._renderAvatar();
-        ctx.drawImage(avatar, 0, 0);
+        await ctx.drawImage(avatar, 0, 0);
 
         const icon = await this._renderIcon();
-        ctx.drawImage(icon, 0, 0);
-
-        const user = await this._userName();
-        ctx.drawImage(user, 0, 0);
-
-        const level = await this._renderBorderLevel();
-        ctx.drawImage(level, 0, 0);
+        await ctx.drawImage(icon, 0, 0);
 
         const border = await this._renderBorder();
-        ctx.drawImage(border, 0, 0);
+        await ctx.drawImage(border, 0, 0);
+
+        const level = await this._renderBorderLevel();
+        await ctx.drawImage(level, 0, 0);
+
+        const user = await this._userName();
+        await ctx.drawImage(user, 0, 0);
 
         return canvas.toBuffer('image/png');
     }
