@@ -93,9 +93,21 @@ export default class CustomClient extends Client implements ICustomClient {
     }
 
     async MongoConnect(): Promise<void> {
+        const dbOptions = {
+            useNewUrlParser: true,
+            connectTimeoutMS: 60000,
+            socketTimeoutMS: 60000,
+            maxIdleTimeMS: 60000,
+            serverSelectionTimeoutMS: 60000,
+            family: 4,
+            useUnifiedTopology: true,
+            dbName: `${this.developmentMode ? this.config.devMongoDb : this.config.mongoDb}`,
+        };
+
         //mongodb:mongodb+srv
-        const url: string = `mongodb://${this.config.mongoUser}:${this.config.mongoPassword}@${this.config.mongoUrl}/${this.developmentMode ? this.config.devMongoDb : this.config.mongoDb}`;
-        mongoose.connect(url);
+        const url: string = `mongodb://${this.config.mongoUser}:${this.config.mongoPassword}@${this.config.mongoUrl}/`;
+        console.log(url);
+        mongoose.connect(url, dbOptions);
         //.then(() => this.logger.mongo(`Conectado a MongoDB`))
         //.catch((e) => this.logger.mongo(e));
         mongoose.Promise = global.Promise;
@@ -121,7 +133,7 @@ export default class CustomClient extends Client implements ICustomClient {
                 this.logger.mongo(`Carga completa.`);
             })
             .on('error', (e) => {
-                this.logger.mongo(`[ERROR] e`);
+                this.logger.mongo(`[ERROR] ${e}`);
             })
             .on('SIGINT', () => {
                 mongoose.connection.close();
