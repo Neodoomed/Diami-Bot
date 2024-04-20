@@ -48,7 +48,7 @@ export default class Rank extends Command {
         const UserLevel = await new Level(member.id, int.guild?.id);
 
         const embed = new EmbedBuilder()
-            .setColor('Purple')
+            .setColor('Orange')
             .setTitle('Rank')
             .setDescription(`🟪 ${member} no ha conseguido experiencia aun.`);
 

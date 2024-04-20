@@ -9,15 +9,4 @@ enum Category {
     Economy = 'Economy',
 }
 
-enum IconsCategory {
-    Utilities = '🧩',
-    Developer = '🪲',
-    Administration = '⚖️',
-    Configuration = '🎚️',
-    Community = '👥',
-    Games = '🎮',
-    Misc = '🎲',
-    Economy = '🪙',
-}
-
 export default Category;
