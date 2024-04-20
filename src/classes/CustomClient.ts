@@ -57,6 +57,7 @@ export default class CustomClient extends Client implements ICustomClient {
             devGuildId: process.env.GUILD_ID_DEV as string,
             //
             mongoUrl: process.env.MONGO_URL as string,
+            mongoPort: process.env.MONGO_PORT as string,
             mongoUser: process.env.MONGO_USER as string,
             mongoPassword: process.env.MONGO_PASSWORD as string,
             mongoDb: process.env.MONGO_DB as string,

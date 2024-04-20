@@ -10,6 +10,7 @@ export interface IConfig {
     devGuildId: string;
 
     mongoUrl: string;
+    mongoPort: string;
     mongoUser: string;
     mongoPassword: string;
     mongoDb: string;

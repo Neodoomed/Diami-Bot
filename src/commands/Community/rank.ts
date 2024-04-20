@@ -85,7 +85,7 @@ export default class Rank extends Command {
 
         const buffer = await profileImage(member.id, {
             customBadges: badges,
-            borderColor: '#fb933f',
+            borderColor: ['#d25828', '#fb933f'],
             badgesFrame: true,
             customDate: customDate,
             moreBackgroundBlur: true,
@@ -96,7 +96,7 @@ export default class Rank extends Command {
                 requiredXp: await UserLevel.getExpRequired(),
                 level: await UserLevel.getLevel(),
                 barColor: '#fb933f',
-                levelColor: '#000000',
+                levelColor: '#ffffff',
                 autoColorRank: true,
             },
         });
