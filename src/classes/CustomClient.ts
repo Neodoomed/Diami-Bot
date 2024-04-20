@@ -94,7 +94,7 @@ export default class CustomClient extends Client implements ICustomClient {
 
     async MongoConnect(): Promise<void> {
         //mongodb:mongodb+srv
-        const url: string = `mongodb://${this.config.mongoUser}:${this.config.mongoPassword}@${this.config.mongoUrl}${this.developmentMode ? this.config.devMongoDb : this.config.mongoDb}`;
+        const url: string = `mongodb://${this.config.mongoUser}:${this.config.mongoPassword}@${this.config.mongoUrl}/${this.developmentMode ? this.config.devMongoDb : this.config.mongoDb}`;
         mongoose.connect(url);
         //.then(() => this.logger.mongo(`Conectado a MongoDB`))
         //.catch((e) => this.logger.mongo(e));
