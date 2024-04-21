@@ -38,8 +38,10 @@ export default class ChatDiamiAi extends Event {
         ) {
             //const response = await getResponseGPT(message);
             const response = await getResponseBard(message);
-            if (response == null) return;
-            message.reply(response);
+
+            //@ts-ignore
+            message.channel.send(response);
+            //message.reply(response);
         }
     }
 }
