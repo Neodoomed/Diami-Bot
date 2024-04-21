@@ -107,7 +107,7 @@ export default class CustomClient extends Client implements ICustomClient {
 
         //mongodb:mongodb+srv
         const url: string = `mongodb://${this.config.mongoUser}:${this.config.mongoPassword}@${this.config.mongoUrl}/`;
-        console.log(url);
+        //console.log(url);
         mongoose.connect(url, dbOptions);
         //.then(() => this.logger.mongo(`Conectado a MongoDB`))
         //.catch((e) => this.logger.mongo(e));

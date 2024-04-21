@@ -25,12 +25,14 @@
         "typescript": "^5.4.4"
     },
     "dependencies": {
+        "@google/generative-ai": "^0.7.1",
         "@napi-rs/canvas": "^0.1.51",
         "axios": "^1.6.8",
         "discord-arts": "^0.5.8",
         "discord.js": "^14.12.1",
         "dotenv": "^16.4.5",
         "glob": "^10.3.12",
-        "mongoose": "^8.2.4"
+        "mongoose": "^8.2.4",
+        "puppeteer": "^22.6.5"
     }
 }
