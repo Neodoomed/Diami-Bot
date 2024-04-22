@@ -28,7 +28,7 @@ export default class GuildDelete extends Event {
                     new EmbedBuilder()
                         .setColor('Purple')
                         .setDescription(
-                            `Gracias por invitarme a tu server. Ahora eres parte del Diagrama.\nNo olvides revisar las configuraciones del bot para habilitar todo su poder.`
+                            `Gracias por invitarme a tu server.\nNo olvides revisar las configuraciones del bot para habilitar todo su poder.`
                         ),
                 ],
             })
