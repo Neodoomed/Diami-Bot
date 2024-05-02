@@ -4,7 +4,7 @@
 ![Status](https://img.shields.io/badge/Status-En%20progreso-blue)
 ![Version](https://img.shields.io/badge/Curren_version-0.5.2-blue)
 ![discord.js](https://img.shields.io/github/package-json/dependency-version/KevinNovak/Discord-Bot-TypeScript-Template/discord.js)
- ![License](https://img.shields.io/github/license/Neodoomed/Diami-bot)<!-- ![License](https://img.shields.io/badge/licence-MIT-green) -->
+![License](https://img.shields.io/github/license/Neodoomed/Diami-bot)<!-- ![License](https://img.shields.io/badge/licence-MIT-green) -->
 ![Last Commit](https://img.shields.io/github/last-commit/Neodoomed/Diami-bot)
 [![Discord Server](https://discordapp.com/api/guilds/774727090188320808/embed.png)](https://discord.com/invite/3x8uMdpeHR)
   
@@ -18,6 +18,7 @@ Este Bot es la nueva version del anterior bot conocido como Adonalsium.
 - ``Discord.js v14.12.1``
 - ``TypeScript v4.7.4``
 - ``Mongoose v8.2.4``
+- ``Gemini V1.0 (Google Bard)``
 - ``Docker``
 - ``Fedora Server 39``
 - ``Railway``
@@ -48,6 +49,12 @@ El proyecto utiliza npm para ejecutar
     npm run start
     ~~~
 
+- Para entorno de producción en Railway...
+    ~~~sh
+    npm install
+    npm run start:railway
+    ~~~
+
 - Para entorno de desarrollo...
     ~~~sh
     npm install
@@ -73,6 +80,8 @@ El proyecto utiliza npm para ejecutar
 >    MONGO_PASSWORD=""
 >    MONGO_DB=""
 >    MONGO_DB_DEV=""
+>    #
+>    GEMINI_API_KEY=""
 >    ~~~
 
 ## 📦 Requisitos
@@ -123,7 +132,7 @@ Lista de la implementaciones del bot y su estado
 - [ ] Sistema de Rol
     - [x] Comando de dados
     - [ ] Hojas de personaje
-    - [ ] Sistema de de Canal Dedicado
+    - [ ] Sistema de Canal Dedicado
 - [ ] Juegos
     - [ ] Gachapón
     - [ ] Auto Hero Combat
@@ -131,7 +140,7 @@ Lista de la implementaciones del bot y su estado
     - [ ] Eventos
 - [x] Tarot
 - [ ] Mascota Virtual
-- [ ] Implantación de IA
+- [x] Implantación de IA ``(powered by Gemini)``
 
 ## 🙏 Agradecimientos
 

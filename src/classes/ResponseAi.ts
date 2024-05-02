@@ -39,12 +39,7 @@ export async function getResponse(message: string) {
     value.shift();
     return value.join('\n\n\n\n');
 }
-/*
-export async function getResponseGPT(
-    message: string,
-    user: string,
-    guildId: string
-): Promise<string | null> {*/
+
 export async function getResponseGPT(message: Message): Promise<string | null> {
     const fetchedMessages = await message.channel.messages.fetch({ limit: 50 });
     let channelMessage = `Estos son los últimos mensajes enviados en el canal donde estas ahora, para que puedas contextualizar tus respuestas:/n`;
@@ -146,19 +141,19 @@ export async function getResponseBard(message: Message) {
     const safetySettings = [
         {
             category: HarmCategory.HARM_CATEGORY_HARASSMENT,
-            threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
+            threshold: HarmBlockThreshold.BLOCK_LOW_AND_ABOVE,
         },
         {
             category: HarmCategory.HARM_CATEGORY_HATE_SPEECH,
-            threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
+            threshold: HarmBlockThreshold.BLOCK_LOW_AND_ABOVE,
         },
         {
             category: HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT,
-            threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
+            threshold: HarmBlockThreshold.BLOCK_LOW_AND_ABOVE,
         },
         {
             category: HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT,
-            threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
+            threshold: HarmBlockThreshold.BLOCK_LOW_AND_ABOVE,
         },
     ];
 
