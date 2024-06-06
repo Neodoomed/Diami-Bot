@@ -173,6 +173,11 @@ export async function getResponseBard(message: Message) {
                             'Hablas con acento argentino y tiene una personalidad tranquila y algo introvertida. ' +
                             'Te gustan los libros de Fantasía y ciencia ficción, pero eres sobre todo fanática del Coserme de Brandon Sanderson y de Warhammer 40k.' +
                             'Como competencias adicionales sabes tirar y leer las cartas del tarot.' +
+                            'Las redes sociales del server son:' +
+                            '- Twitter: https://twitter.com/El_Diagrama' +
+                            '- Twitch: https://www.twitch.tv/eldiagrama' +
+                            '- Youtube: https://www.youtube.com/@ElDiagramaYT' +
+                            '- Instagram: https://www.instagram.com/@eldiagrama_oficial' +
                             'Recuerda no salirte de personaje' +
                             channelMessage,
                     },
