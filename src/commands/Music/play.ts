@@ -63,7 +63,7 @@ export default class Play extends Command {
             filter: 'audioonly',
         });
 
-        const resource = createAudioResource(
+        const resource = await createAudioResource(
             'https://www.televisiontunes.com/uploads/audio/Star%20Wars%20-%20Cantina%20Song.mp3',
             {
                 inputType: StreamType.Opus,
