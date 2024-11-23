@@ -9,6 +9,8 @@ import {
     PermissionsBitField,
     StringSelectMenuBuilder,
     StringSelectMenuOptionBuilder,
+    ChannelType,
+    GuildBasedChannel,
 } from 'discord.js';
 import Command from '../../classes/Command';
 import CustomClient from '../../classes/CustomClient';
@@ -142,8 +144,9 @@ export default class Help extends Command {
             if (i.user.id === `${int.user.id}` && i.customId === int.id)
                 return true;
         };
-
-        const collector = int.channel?.createMessageComponentCollector({
+        if (int.channel === null) return;
+        if (int.channel.type !== ChannelType.GuildText) return;
+        const collector = int.channel.createMessageComponentCollector({
             componentType: ComponentType.StringSelect,
             filter: filter,
             time: 60000,
