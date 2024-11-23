@@ -16,9 +16,6 @@ import Command from '../../classes/Command';
 import CustomClient from '../../classes/CustomClient';
 import Category from '../../enums/Category';
 
-//import { ytdl } from 'ytdl-core';
-import ytdl = require('@distube/ytdl-core');
-
 export default class Play extends Command {
     constructor(client: CustomClient) {
         super(client, {
@@ -41,55 +38,6 @@ export default class Play extends Command {
     }
 
     async Execute(int: ChatInputCommandInteraction) {
-        const url = int.options.getString('url');
-
-        if (!url) return;
-
-        //const player = createAudioPlayer();
-
-        //@ts-ignore
-        const guild = this.client.guilds.cache.get(int.guildId);
-        //@ts-ignore
-        const member = guild.members.cache.get(int.member.user.id);
-        //@ts-ignore
-        const voiceChannel = member.voice.channel;
-        if (!voiceChannel) return;
-
-        //const stream = ytdl(url, {
-        //    filter: 'audioonly',
-        //});
-        /*const stream = await ytdl(url, {
-            quality: 'highestaudio',
-            filter: 'audioonly',
-        });*/
-        // https://cdn.discordapp.com/attachments/1147982756589092894/1268004252924514346/bye.mp3?ex=66aad87c&is=66a986fc&hm=eee74cea04e0341d32364b10533f19ef1e4f10cada29e1de2a6ea99e0e3041e3&
-        // https://www.televisiontunes.com/uploads/audio/Star%20Wars%20-%20Cantina%20Song.mp3
-        const resource = await createAudioResource(url, {
-            inputType: StreamType.Opus,
-        });
-
-        const connection = await joinVoiceChannel({
-            channelId: voiceChannel.id,
-            guildId: voiceChannel.guild.id,
-            adapterCreator: voiceChannel.guild.voiceAdapterCreator,
-        });
-
-        const player = createAudioPlayer();
-
-        connection.subscribe(player);
-        player.play(resource);
-
-        player.on('error', (error) => {
-            console.error(`Error: ${error.message}`);
-        });
-
-        player.on(AudioPlayerStatus.Idle, () => {
-            const resource = createAudioResource(url, {
-                inputType: StreamType.Opus,
-            });
-            player.play(resource);
-        });
-
         return;
     }
 }
