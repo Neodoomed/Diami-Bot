@@ -1,5 +1,6 @@
 import {
     ApplicationCommandType,
+    ContextMenuCommandType,
     EmbedBuilder,
     MessageContextMenuCommandInteraction,
     PermissionsBitField,
@@ -15,7 +16,7 @@ export default class VoteContext extends ContextMenu {
         super(client, {
             name: 'Votación',
             category: Category.Utilities,
-            type: ApplicationCommandType.Message,
+            type: ApplicationCommandType.Message as ContextMenuCommandType,
             default_member_permissions: PermissionsBitField.Flags.KickMembers,
             dev: false,
         });
