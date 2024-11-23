@@ -1,5 +1,6 @@
 import {
     ApplicationCommandType,
+    ContextMenuCommandType,
     EmbedBuilder,
     MessageContextMenuCommandInteraction,
     PermissionsBitField,
@@ -15,7 +16,7 @@ export default class DeleteMessageContext extends ContextMenu {
         super(client, {
             name: 'Borrar Mensaje',
             category: Category.Administration,
-            type: ApplicationCommandType.Message,
+            type: ApplicationCommandType.Message as ContextMenuCommandType,
             default_member_permissions: PermissionsBitField.Flags.KickMembers,
             dev: false,
         });

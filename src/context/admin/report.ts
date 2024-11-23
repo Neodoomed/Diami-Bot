@@ -1,6 +1,7 @@
 import {
     ActionRowBuilder,
     ApplicationCommandType,
+    ContextMenuCommandType,
     EmbedBuilder,
     ModalBuilder,
     PermissionsBitField,
@@ -19,7 +20,7 @@ export default class ReportContext extends ContextMenu {
         super(client, {
             name: 'Reportar',
             category: Category.Administration,
-            type: ApplicationCommandType.User,
+            type: ApplicationCommandType.User as ContextMenuCommandType,
             default_member_permissions:
                 PermissionsBitField.Flags.UseApplicationCommands,
             dev: false,

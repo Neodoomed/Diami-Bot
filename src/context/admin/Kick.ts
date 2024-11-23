@@ -1,6 +1,7 @@
 import {
     ActionRowBuilder,
     ApplicationCommandType,
+    ContextMenuCommandType,
     EmbedBuilder,
     ModalBuilder,
     PermissionsBitField,
@@ -19,7 +20,7 @@ export default class KickContext extends ContextMenu {
         super(client, {
             name: 'Patada',
             category: Category.Administration,
-            type: ApplicationCommandType.User,
+            type: ApplicationCommandType.User as ContextMenuCommandType,
             default_member_permissions: PermissionsBitField.Flags.KickMembers,
             dev: false,
         });

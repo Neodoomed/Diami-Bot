@@ -1,5 +1,6 @@
 import {
     ApplicationCommandType,
+    ContextMenuCommandType,
     EmbedBuilder,
     MessageContextMenuCommandInteraction,
     PermissionsBitField,
@@ -16,7 +17,7 @@ export default class DerrapeContext extends ContextMenu {
         super(client, {
             name: 'Derrape',
             category: Category.Community,
-            type: ApplicationCommandType.Message,
+            type: ApplicationCommandType.Message as ContextMenuCommandType,
             default_member_permissions:
                 PermissionsBitField.Flags.UseApplicationCommands,
             dev: false,

@@ -1,5 +1,6 @@
 import {
     ApplicationCommandType,
+    ContextMenuCommandType,
     ContextMenuCommandInteraction,
     PermissionsBitField,
     UserContextMenuCommandInteraction,
@@ -13,7 +14,7 @@ export default class TestContext extends ContextMenu {
         super(client, {
             name: 'Test Context',
             category: Category.Developer,
-            type: ApplicationCommandType.User,
+            type: ApplicationCommandType.User as ContextMenuCommandType,
             default_member_permissions: PermissionsBitField.Flags.Administrator,
             dev: true,
         });
