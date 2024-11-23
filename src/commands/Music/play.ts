@@ -58,17 +58,15 @@ export default class Play extends Command {
         //const stream = ytdl(url, {
         //    filter: 'audioonly',
         //});
-        const stream = await ytdl(url, {
+        /*const stream = await ytdl(url, {
             quality: 'highestaudio',
             filter: 'audioonly',
+        });*/
+        // https://cdn.discordapp.com/attachments/1147982756589092894/1268004252924514346/bye.mp3?ex=66aad87c&is=66a986fc&hm=eee74cea04e0341d32364b10533f19ef1e4f10cada29e1de2a6ea99e0e3041e3&
+        // https://www.televisiontunes.com/uploads/audio/Star%20Wars%20-%20Cantina%20Song.mp3
+        const resource = await createAudioResource(url, {
+            inputType: StreamType.Opus,
         });
-
-        const resource = await createAudioResource(
-            'https://www.televisiontunes.com/uploads/audio/Star%20Wars%20-%20Cantina%20Song.mp3',
-            {
-                inputType: StreamType.Opus,
-            }
-        );
 
         const connection = await joinVoiceChannel({
             channelId: voiceChannel.id,
@@ -86,12 +84,9 @@ export default class Play extends Command {
         });
 
         player.on(AudioPlayerStatus.Idle, () => {
-            const resource = createAudioResource(
-                'https://www.televisiontunes.com/uploads/audio/Star%20Wars%20-%20Cantina%20Song.mp3',
-                {
-                    inputType: StreamType.Opus,
-                }
-            );
+            const resource = createAudioResource(url, {
+                inputType: StreamType.Opus,
+            });
             player.play(resource);
         });
 

@@ -27,8 +27,13 @@ export default class ChatDiamiAi extends Event {
 
     async Execute(message: Message) {
         const { guild } = message;
+        const guildConfig = await GuildConfig.findOne({
+            guildId: `${message.guildId}`,
+        });
+
         if (!guild) return;
         if (message.author.bot) return;
+        if (message.channelId === guildConfig?.channels.confession) return;
         let target = null;
         if (message.mentions.users.first())
             target = message.mentions.users.first()?.id;
