@@ -31,7 +31,7 @@ export default class Help extends Command {
         });
     }
 
-    async Execute(int: ChatInputCommandInteraction): Promise<any> {
+    async Execute(int: ChatInputCommandInteraction<'cached'>): Promise<any> {
         const selects = Category;
         const commands = this.client.commands;
         let commandsList = {};
