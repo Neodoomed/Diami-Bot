@@ -1,5 +1,6 @@
 import {
     AttachmentBuilder,
+    TextChannel,
     EmbedBuilder,
     Events,
     Guild,
@@ -69,7 +70,7 @@ export default class LevelSystem extends Event {
                 `${author?.id}_lvlUp.png`
             );
 
-            await channel.send({
+            await (channel as TextChannel).send({
                 files: [attachment],
             });
         }
