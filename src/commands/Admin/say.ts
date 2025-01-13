@@ -3,15 +3,20 @@ import {
     ChatInputCommandInteraction,
     EmbedBuilder,
     PermissionsBitField,
+    ActionRowBuilder,
+    TextInputBuilder,
+    ModalBuilder,
+    ModalActionRowComponentBuilder,
+    TextInputStyle,
 } from 'discord.js';
 import Command from '../../classes/Command';
 import CustomClient from '../../classes/CustomClient';
 import Category from '../../enums/Category';
 
-export default class Say extends Command {
+export default class SayBack extends Command {
     constructor(client: CustomClient) {
         super(client, {
-            name: 'say',
+            name: 'say-back',
             description: '🗨️ Puedes enviar un mensaje como si fueras Diami',
             category: Category.Administration,
             default_member_permissions: PermissionsBitField.Flags.Administrator,
