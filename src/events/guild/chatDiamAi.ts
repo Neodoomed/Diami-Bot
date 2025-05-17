@@ -6,15 +6,10 @@ import {
     Message,
     TextChannel,
 } from 'discord.js';
-import axios from 'axios';
 import CustomClient from '../../classes/CustomClient';
 import Event from '../../classes/Event';
 import GuildConfig from '../../schemas/GuildConfig';
-import {
-    getResponse,
-    getResponseBard,
-    getResponseGPT,
-} from '../../classes/ResponseAi';
+import { DiamiResponse } from '../../classes/DiamiAi';
 
 export default class ChatDiamiAi extends Event {
     constructor(client: CustomClient) {
@@ -27,9 +22,13 @@ export default class ChatDiamiAi extends Event {
 
     async Execute(message: Message) {
         const { guild } = message;
+        const channel = message.channel as TextChannel;
+
         const guildConfig = await GuildConfig.findOne({
             guildId: `${message.guildId}`,
         });
+
+        let response = null;
 
         if (!guild) return;
         if (message.author.bot) return;
@@ -41,12 +40,9 @@ export default class ChatDiamiAi extends Event {
             message.content.startsWith('>>') ||
             target === this.client.user?.id
         ) {
-            //const response = await getResponseGPT(message);
-            const response = await getResponseBard(message);
-
-            //@ts-ignore
-            message.channel.send(response);
-            //message.reply(response);
+            channel.sendTyping();
+            response = await DiamiResponse(message);
+            channel.send(response);
         }
     }
 }
