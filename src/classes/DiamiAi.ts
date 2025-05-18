@@ -19,7 +19,7 @@ if (!GEMINI_API_KEY) {
 
 const genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
 const geminiModel = genAI.getGenerativeModel({
-    model: 'gemini-1.5-flash-latest',
+    model: 'gemini-2.0-flash-lite',
 });
 
 // Historial de mensajes
@@ -64,8 +64,6 @@ export async function DiamiResponse(message: Message) {
 
     let userPrompt = message.content;
     const userName = message.author.displayName;
-
-    //channel.sendTyping();
 
     if (!userPrompt) {
         userPrompt = '¿Hola?';
@@ -149,7 +147,6 @@ Tu respuesta:
 
         const result = await chat.sendMessage(fullPrompt);
         const response = result.response;
-        //channel.stopTyping();
         const geminiText = response.text();
 
         return geminiText;
