@@ -42,7 +42,11 @@ export default class ChatDiamiAi extends Event {
         ) {
             channel.sendTyping();
             response = await DiamiResponse(message);
-            channel.send(response);
+
+            return await channel.send({
+                content: response,
+            });
         }
+        return;
     }
 }
