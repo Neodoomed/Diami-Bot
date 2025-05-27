@@ -47,6 +47,33 @@ export default class ChatDiamiAi extends Event {
                 content: response,
             });
         }
+
+        // Responder aleatoriamente a saludos
+        const saludos = [
+            'hola',
+            'buenas',
+            'buenos días',
+            'buenas tardes',
+            'buenas noches',
+            'hello',
+            'hi',
+            'holi',
+            'holis',
+            'saludos',
+        ];
+        const mensajeContenido = message.content.toLowerCase();
+        if (saludos.some((saludo) => mensajeContenido.startsWith(saludo))) {
+            // 20% de probabilidad de responder
+            if (Math.random() < 0.2) {
+                channel.sendTyping();
+                response = await DiamiResponse(message);
+
+                return await channel.send({
+                    content: response,
+                });
+            }
+        }
+
         return;
     }
 }
