@@ -3,8 +3,9 @@ import {
     HarmCategory,
     HarmBlockThreshold,
     GenerationConfig,
+    Part,
 } from '@google/generative-ai';
-import { Message, heading, TextChannel } from 'discord.js';
+import { Message, TextChannel, Attachment } from 'discord.js';
 import { config, BotConfig } from '../interfaces/IConfigAi';
 import * as dotenv from 'dotenv';
 
@@ -27,6 +28,32 @@ const geminiModel = genAI.getGenerativeModel({
 interface ChatMessage {
     author: string; // Nombre de usuario o "IA"
     content: string;
+    attachments: Attachment[];
+}
+
+async function getImagePartsFromMessage(message: Message): Promise<Part[]> {
+    const imageParts: Part[] = [];
+    if (message.attachments.size > 0) {
+        for (const attachment of message.attachments.values()) {
+            if (attachment.contentType?.startsWith('image/')) {
+                try {
+                    const response = await fetch(attachment.url);
+                    const buffer = await response.arrayBuffer();
+                    const uint8Array = new Uint8Array(buffer);
+                    imageParts.push({
+                        inlineData: {
+                            mimeType: attachment.contentType,
+                            data: Buffer.from(uint8Array).toString('base64'),
+                        },
+                    });
+                } catch (error) {
+                    console.error('Error fetching or processing image:', error);
+                    // Handle the error, maybe log it or inform the user
+                }
+            }
+        }
+    }
+    return imageParts;
 }
 
 function formatServerInfoForPrompt(
@@ -93,9 +120,12 @@ export async function DiamiResponse(message: Message) {
         console.error('Error al obtener historial de mensajes del canal:', err);
     }
 
-    // Construir el prompt para Gemini con personalidad, info del server e historial
+    // Obtener partes de imagen del mensaje
+    const imageParts = await getImagePartsFromMessage(message);
 
-    const fullPrompt = `
+    // Construir el prompt para Gemini con personalidad, info del server, historial e imagenes
+
+    let fullPrompt = `
 ${config.personality}
 ${serverInfoContext}
 
@@ -105,7 +135,7 @@ ${formattedHistory || 'No hay historial previo disponible para esta conversació
 --- FIN DEL HISTORIAL ---
 
 Tu tarea es responder al ultimo mensaje del usuario (${userName}), que es: "${userPrompt}"
-Considera el contexto del Historial y la información del servidor proporcionada.
+Considera el contexto del Historial, la información del servidor proporcionada Y cualquier imagen que el usuario haya enviado.
 Responde de forma natural como Diami.
 
 Tu respuesta:
@@ -123,19 +153,19 @@ Tu respuesta:
             // Configuración de seguridad (opcional pero recomendada)
             {
                 category: HarmCategory.HARM_CATEGORY_HARASSMENT,
-                threshold: HarmBlockThreshold.BLOCK_ONLY_HIGH,
+                threshold: HarmBlockThreshold.BLOCK_NONE,
             },
             {
                 category: HarmCategory.HARM_CATEGORY_HATE_SPEECH,
-                threshold: HarmBlockThreshold.BLOCK_ONLY_HIGH,
+                threshold: HarmBlockThreshold.BLOCK_NONE,
             },
             {
                 category: HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT,
-                threshold: HarmBlockThreshold.BLOCK_ONLY_HIGH,
+                threshold: HarmBlockThreshold.BLOCK_NONE,
             },
             {
                 category: HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT,
-                threshold: HarmBlockThreshold.BLOCK_ONLY_HIGH,
+                threshold: HarmBlockThreshold.BLOCK_NONE,
             },
         ];
 
@@ -145,8 +175,20 @@ Tu respuesta:
             safetySettings,
         });
 
-        const result = await chat.sendMessage(fullPrompt);
-        const response = result.response;
+        let response;
+        if (imageParts.length > 0) {
+            // Si hay imágenes, enviar el prompt y las imágenes juntas
+            const result = await geminiModel.generateContent([
+                fullPrompt,
+                ...imageParts,
+            ]);
+            response = result.response;
+        } else {
+            // Si no hay imágenes, enviar solo el prompt
+            const result = await chat.sendMessage(fullPrompt);
+            response = result.response;
+        }
+
         const geminiText = response.text();
 
         return geminiText;
