@@ -31,6 +31,25 @@ interface ChatMessage {
     attachments: Attachment[];
 }
 
+function getCurrentContext(): string {
+    const options: Intl.DateTimeFormatOptions = {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        timeZone: 'America/Argentina/Buenos_Aires', // ¡Clave para la consistencia!
+        hour12: false,
+    };
+
+    const now = new Date();
+    const formattedDate = new Intl.DateTimeFormat('es-AR', options).format(now);
+
+    // Formato que la IA entenderá fácilmente
+    return `[Contexto Actual: Ahora es ${formattedDate}.]`;
+}
+
 async function getImagePartsFromMessage(message: Message): Promise<Part[]> {
     const imageParts: Part[] = [];
     if (message.attachments.size > 0) {
@@ -127,16 +146,23 @@ export async function DiamiResponse(message: Message) {
 
     let fullPrompt = `
 ${config.personality}
+
+### **DATOS DEL SERVIDOR**
 ${serverInfoContext}
 
-A continuación, el historial reciente de la conversación (los últimos ${config.maxHistoryLength} mensajes). El mensaje mas reciente es el del usuario actual.
---- HISTORIAL ---
-${formattedHistory || 'No hay historial previo disponible para esta conversación.'}
---- FIN DEL HISTORIAL ---
+### 
 
-Tu tarea es responder al ultimo mensaje del usuario (${userName}), que es: "${userPrompt}"
+### **HISTORIAL DE LA CONVERSACIÓN**
+- A continuación, el historial reciente de la conversación (los últimos ${config.maxHistoryLength} mensajes). El mensaje mas reciente es el del usuario actual.
+${formattedHistory || 'No hay historial previo disponible para esta conversación.'}
+
+### **TAREA**
+- Tu tarea es responder al ultimo mensaje del usuario (${userName}), que es: "${userPrompt}"
 Considera el contexto del Historial, la información del servidor proporcionada Y cualquier imagen que el usuario haya enviado.
 Responde de forma natural como Diami.
+
+### **CONTEXTO TEMPORAL**
+- ${getCurrentContext()}
 
 Tu respuesta:
     `.trim();
