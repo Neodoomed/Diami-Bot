@@ -147,30 +147,26 @@ export async function DiamiResponse(message: Message) {
     let fullPrompt = `
 ${config.personality}
 
-### **DATOS DEL SERVIDOR**
-${serverInfoContext}
+<datos_del_servidor>
+    ${serverInfoContext}
+<datos_del_servidor>
 
-### 
+<historial_de_mensajes>
+    ${formattedHistory || 'No hay historial previo disponible para esta conversación.'}
+</ historial_de_mensajes>
 
-### **HISTORIAL DE LA CONVERSACIÓN**
-- A continuación, el historial reciente de la conversación (los últimos ${config.maxHistoryLength} mensajes). El mensaje mas reciente es el del usuario actual.
-${formattedHistory || 'No hay historial previo disponible para esta conversación.'}
+<contexto>
+    ${getCurrentContext()}
+</contexto>
 
-### **TAREA**
-- Tu tarea es responder al ultimo mensaje del usuario (${userName}), que es: "${userPrompt}"
-Considera el contexto del Historial, la información del servidor proporcionada Y cualquier imagen que el usuario haya enviado.
-Responde de forma natural como Diami.
+ ${userName}: ${userPrompt}
 
-### **CONTEXTO TEMPORAL**
-- ${getCurrentContext()}
-
-Tu respuesta:
     `.trim();
 
     try {
         const generationConfig: GenerationConfig = {
             temperature: 0.7,
-            topK: 40,
+            topK: 1,
             topP: 0.95,
             maxOutputTokens: 1024,
         };
