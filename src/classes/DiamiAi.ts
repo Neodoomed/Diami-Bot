@@ -147,19 +147,20 @@ export async function DiamiResponse(message: Message) {
     let fullPrompt = `
 ${config.personality}
 
-<datos_del_servidor>
-    ${serverInfoContext}
-<datos_del_servidor>
+<metadatos_de_turno>
+    <timestamp_actual>${getCurrentContext()}</timestamp_actual>
+    <servidor_info>${serverInfoContext}</servidor_info>
+    <usuario_actual>${userName}</usuario_actual>
+</metadatos_de_turno>
 
 <historial_de_mensajes>
     ${formattedHistory || 'No hay historial previo disponible para esta conversación.'}
 </ historial_de_mensajes>
 
-<contexto>
-    ${getCurrentContext()}
-</contexto>
 
- ${userName}: ${userPrompt}
+<nuevo_mensaje_del_usuario>
+${userName}: ${userPrompt}
+</nuevo_mensaje_del_usuario>
 
     `.trim();
 
