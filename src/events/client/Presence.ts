@@ -24,7 +24,7 @@ export default class Presence extends Event {
             activities: [
                 {
                     name: 'Lista para matar a dios, o convertirme en él!...',
-                    type: 4,
+                    type: 4, // ActivityType.Custom
                 },
             ],
             status: PresenceUpdateStatus.Online,
