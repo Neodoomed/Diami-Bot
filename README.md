@@ -144,7 +144,6 @@ Lista de la implementaciones del bot y su estado
 
 ## 🙏 Agradecimientos
 
-- [Jab](https://github.com/JavierBagatoli/)
 - A todos los miembros fundacionales del [El Diagrama](https://discord.com/invite/3x8uMdpeHR)
 
 ## 💾 Autor
