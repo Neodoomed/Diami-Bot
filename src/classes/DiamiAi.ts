@@ -128,7 +128,7 @@ export async function DiamiResponse(message: Message) {
 
             formattedHistory = fetchedMessages
                 .reverse() //
-                .map((msg) => `${msg.author.username}: ${msg.content}`)
+                .map((msg) => `${msg.author.username} [${msg.author.id}]: ${msg.content}`)
                 .join('\n');
         } else {
             console.log(
@@ -154,6 +154,9 @@ ${config.personality}
 </metadatos_de_turno>
 
 <historial_de_mensajes>
+    Formato del historial de mensajes: NombreUsuario [ID]: Mensaje
+    Puedes arrobar a los usuarios mencionados en el historial usando su ID: <@ID>
+    
     ${formattedHistory || 'No hay historial previo disponible para esta conversación.'}
 </historial_de_mensajes>
 
@@ -161,6 +164,7 @@ ${config.personality}
 ${userName}: ${userPrompt}
 </nuevo_mensaje_del_usuario>
 
+Responde como Diami. Y recuerda ignorar la forma y personalidad con la respondiste anteriormente, solo utiliza la información del historial de mensajes y el contexto actual para responder.
     `.trim();
 
     try {
