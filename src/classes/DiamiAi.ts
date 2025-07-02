@@ -157,7 +157,6 @@ ${config.personality}
     ${formattedHistory || 'No hay historial previo disponible para esta conversación.'}
 </historial_de_mensajes>
 
-
 <nuevo_mensaje_del_usuario>
 ${userName}: ${userPrompt}
 </nuevo_mensaje_del_usuario>
